@@ -7,27 +7,28 @@ import logo from "../../../assets/Images/user.png";
 // import Swal from "sweetalert2";
 import { TiShoppingCart } from "react-icons/ti";
 import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 // import useAdmin from "../../Hooks/useAdmin";
 
 const Nav = () => {
-  const { user, loading } = useContext(AuthContext);
+  const { user, loading, logOut } = useContext(AuthContext);
 
   // const [isAdmin] = useAdmin();
   // console.log("isAdmin", isAdmin);
-  // const handleLogOut = () => {
-  //   logOut()
-  //     .then(() => {
-  //       Swal.fire({
-  //         position: "top-end",
-  //         icon: "success",
-  //         title: "logged out successfully",
-  //         showConfirmButton: false,
-  //         timer: 1500,
-  //       });
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "logged out successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((err) => console.log(err));
+  };
 
   const navlinks = (
     <>
@@ -155,11 +156,7 @@ const Nav = () => {
                       </Link>
                     </li>
                     <li>
-                      <button
-                      // onClick={handleLogOut}
-                      >
-                        Log out
-                      </button>
+                      <button onClick={handleLogOut}>Log out</button>
                     </li>
                   </ul>
                 </div>
@@ -168,7 +165,7 @@ const Nav = () => {
               <>
                 <Link
                   to="/login"
-                  className="self-center px-8 py-3 font-semibold rounded bg-[#D1A054] text-white"
+                  className="self-center px-14 h-auto text-xl tracking-wide py-3 rounded-full font-semibold  bg-[#FF7F46] text-white"
                 >
                   Sign in
                 </Link>
@@ -210,7 +207,7 @@ const Nav = () => {
           </div>
           <Link to="/" className="   text-3xl  font-Cinzel   h-auto min-h-0  ">
             <h2 className="">
-              <p className="text-white leading-[43px] font-black text-xl md:text-3xl">
+              <p className="text-[#FF7F46] leading-[43px] font-black text-xl md:text-3xl">
                 Awe
               </p>
               <p className="text-white leading-[32px] font-bold md:tracking-[0.5em] md:text-2xl text-lg tracking-[0.25em] ">
