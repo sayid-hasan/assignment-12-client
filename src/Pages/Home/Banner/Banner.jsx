@@ -28,7 +28,7 @@ const Banner = () => {
 
     setSliderItems(initialSliderItems);
     setThumbnailItems(initialThumbnailItems);
-
+    SliderDom.current.appendChild(initialSliderItems[0]);
     thumbnailBorderDom.current.appendChild(initialThumbnailItems[0]);
 
     runNextAutoRef.current = setTimeout(() => {
