@@ -1,24 +1,25 @@
 import img1 from "../../assets/Images/RegPage.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import { MdVisibility, MdVisibilityOff } from "react-icons/md";
 
 import { Helmet } from "react-helmet-async";
-// import Swal from "sweetalert2";
-// import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
+
 import SococialLogin from "../../Components/SococialLogin/SococialLogin";
 import useAuth from "../../Hooks/useAuth";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const SignUp = () => {
   const { createUser, updateUser } = useAuth();
   const [showPass, setShowPass] = useState(false);
-  // const navigate = useNavigate();
-  // const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
+  const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
-    // reset,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -35,23 +36,46 @@ const SignUp = () => {
             email,
           };
           console.log(userInfo);
-          // axiosPublic.post("/users", userInfo).then((res) => {
-          //   if (res.data.insertedId) {
-          //     reset();
-          //     Swal.fire({
-          //       position: "top",
-          //       icon: "success",
-          //       title: "sign up successfully",
-          //       showConfirmButton: false,
-          //       timer: 1500,
-          //     });
+          axiosPublic.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              reset();
+              Swal.fire({
+                position: "top",
+                icon: "success",
+                title: "sign up successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
 
-          //     navigate("/");
-          //   }
-          // });
+              navigate("/");
+              window.location.reload();
+            } else if (res.data.message) {
+              Swal.fire({
+                position: "top",
+                icon: "error",
+                title: res.data.message,
+                showConfirmButton: false,
+                timer: 1500,
+              });
+
+              navigate("/");
+            }
+          });
         });
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        reset();
+        Swal.fire({
+          position: "top",
+          icon: "error",
+
+          title: err,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate("/");
+      });
   };
   return (
     <div>
