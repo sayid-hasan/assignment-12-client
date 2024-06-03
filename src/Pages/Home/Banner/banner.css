@@ -223,7 +223,7 @@ header a {
 
 @keyframes effectNext {
   from {
-    transform: translateX(150px);
+    transform: translateX(100px);
   }
 }
 
