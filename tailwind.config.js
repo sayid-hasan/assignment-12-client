@@ -5,6 +5,8 @@ export default {
   theme: {
     fontFamily: {
       Cinzel: ' "Cinzel", serif',
+      Jaro: ' "Jaro", serif',
+      Inter: ' "Inter", serif',
     },
   },
 

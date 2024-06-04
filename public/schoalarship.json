@@ -1,155 +1,155 @@
 [
   {
-    "University Name": "Harvard University",
-    "University Image": "https://i.imgur.com/LdPaVyB.jpg",
-    "Scholarship Category": "Merit-based",
-    "University location/address": {
+    "universityName": "Harvard University",
+    "universityImage": "https://i.imgur.com/LdPaVyB.jpg",
+    "scholarshipCategory": "Merit-based",
+    "university_Location": {
       "country": "USA",
       "city": "Cambridge"
     },
-    "Application Deadline": "2024-12-01",
-    "Subject Category": "All Subjects",
-    "Application Fees": 75,
+    "applicationDeadline": "2024-12-01",
+    "subjectCategory": "All Subjects",
+    "applicationFees": 75,
     "Rating": 4.8,
     "ScholarshipDetailsField": "The Harvard University Merit-based Scholarship recognizes outstanding academic achievement and leadership potential. Benefits include full tuition coverage, access to world-class research facilities, and opportunities for professional development. Scholars become part of a prestigious network, enhancing career prospects and personal growth."
   },
   {
-    "University Name": "University of Oxford",
-    "University Image": "https://i.imgur.com/h62hWMt.jpg",
-    "Scholarship Category": "Need-based",
-    "University location/address": {
+    "universityName": "University of Oxford",
+    "universityImage": "https://i.imgur.com/h62hWMt.jpg",
+    "scholarshipCategory": "Need-based",
+    "university_Location": {
       "country": "UK",
       "city": "Oxford"
     },
-    "Application Deadline": "2024-11-15",
-    "Subject Category": "Humanities",
-    "Application Fees": 60,
+    "applicationDeadline": "2024-11-15",
+    "subjectCategory": "Humanities",
+    "applicationFees": 60,
     "Rating": 4.7,
     "ScholarshipDetailsField": "The University of Oxford Need-based Scholarship offers substantial financial aid to talented students who demonstrate financial need. It covers tuition fees and living expenses, ensuring that financial barriers do not impede access to one of the world's leading educational institutions. Scholars benefit from Oxford's rich academic tradition and extensive alumni network."
   },
   {
-    "University Name": "University of Toronto",
-    "University Image": "https://i.imgur.com/FrcBxtQ.jpg",
-    "Scholarship Category": "International",
-    "University location/address": {
+    "universityName": "University of Toronto",
+    "universityImage": "https://i.imgur.com/FrcBxtQ.jpg",
+    "scholarshipCategory": "International",
+    "university_Location": {
       "country": "Canada",
       "city": "Toronto"
     },
-    "Application Deadline": "2024-10-30",
-    "Subject Category": "Science and Engineering",
-    "Application Fees": 90,
+    "applicationDeadline": "2024-10-30",
+    "subjectCategory": "Science and Engineering",
+    "applicationFees": 90,
     "Rating": 4.5,
     "ScholarshipDetailsField": "The University of Toronto International Scholarship is designed to attract top international students to its diverse academic community. It offers full or partial tuition waivers, along with stipends for living expenses. Recipients gain access to cutting-edge research opportunities and are supported in their academic and professional endeavors."
   },
   {
-    "University Name": "Australian National University",
-    "University Image": "https://i.imgur.com/Wbp8ILT.jpg",
-    "Scholarship Category": "Research",
-    "University location/address": {
+    "universityName": "Australian National University",
+    "universityImage": "https://i.imgur.com/Wbp8ILT.jpg",
+    "scholarshipCategory": "Research",
+    "university_Location": {
       "country": "Australia",
       "city": "Canberra"
     },
-    "Application Deadline": "2024-09-25",
-    "Subject Category": "Social Sciences",
-    "Application Fees": 100,
+    "applicationDeadline": "2024-09-25",
+    "subjectCategory": "Social Sciences",
+    "applicationFees": 100,
     "Rating": 4.6,
     "ScholarshipDetailsField": "The Australian National University Research Scholarship supports students conducting advanced research in the social sciences. It includes full tuition coverage, a generous living stipend, and funding for research-related expenses. Scholars are mentored by leading academics and have the opportunity to contribute to impactful, high-quality research projects."
   },
   {
-    "University Name": "University of Tokyo",
-    "University Image": "https://i.imgur.com/jmBiXYL.jpg",
-    "Scholarship Category": "Government-funded",
-    "University location/address": {
+    "universityName": "University of Tokyo",
+    "universityImage": "https://i.imgur.com/jmBiXYL.jpg",
+    "scholarshipCategory": "Government-funded",
+    "university_Location": {
       "country": "Japan",
       "city": "Tokyo"
     },
-    "Application Deadline": "2024-08-31",
-    "Subject Category": "Technology",
-    "Application Fees": 10000,
+    "applicationDeadline": "2024-08-31",
+    "subjectCategory": "Technology",
+    "applicationFees": 10000,
     "Rating": 4.4,
     "ScholarshipDetailsField": "The University of Tokyo Government-funded Scholarship, also known as the MEXT Scholarship, is provided by the Japanese government to international students. It covers full tuition, provides a monthly stipend, and includes travel expenses. Scholars engage in cutting-edge technological research and benefit from Tokyo's vibrant academic and cultural environment."
   },
   {
-    "University Name": "ETH Zurich",
-    "University Image": "https://i.imgur.com/vnBUNGR.jpg",
-    "Scholarship Category": "Excellence",
-    "University location/address": {
+    "universityName": "ETH Zurich",
+    "universityImage": "https://i.imgur.com/vnBUNGR.jpg",
+    "scholarshipCategory": "Excellence",
+    "university_Location": {
       "country": "Switzerland",
       "city": "Zurich"
     },
-    "Application Deadline": "2024-07-20",
-    "Subject Category": "Engineering",
-    "Application Fees": 50,
+    "applicationDeadline": "2024-07-20",
+    "subjectCategory": "Engineering",
+    "applicationFees": 50,
     "Rating": 4.9,
     "ScholarshipDetailsField": "The ETH Zurich Excellence Scholarship is awarded to outstanding students in engineering. It includes full tuition coverage and a substantial living allowance. Scholars are given access to world-class laboratories, research opportunities, and a network of industry professionals, providing a strong foundation for future innovation and leadership in engineering."
   },
   {
-    "University Name": "Stanford University",
-    "University Image": "https://i.imgur.com/SWcru7H.jpg",
-    "Scholarship Category": "Merit-based",
-    "University location/address": {
+    "universityName": "Stanford University",
+    "universityImage": "https://i.imgur.com/SWcru7H.jpg",
+    "scholarshipCategory": "Merit-based",
+    "university_Location": {
       "country": "USA",
       "city": "Stanford"
     },
-    "Application Deadline": "2024-12-05",
-    "Subject Category": "All Subjects",
-    "Application Fees": 80,
+    "applicationDeadline": "2024-12-05",
+    "subjectCategory": "All Subjects",
+    "applicationFees": 80,
     "Rating": 4.9,
     "ScholarshipDetailsField": "The Stanford University Merit-based Scholarship is aimed at highly talented students across all disciplines. It provides comprehensive financial support, including tuition, room, and board. Scholars benefit from Stanford's entrepreneurial environment, innovative research opportunities, and a supportive academic community, preparing them for leadership roles in their respective fields."
   },
   {
-    "University Name": "University of Melbourne",
-    "University Image": "https://i.imgur.com/h62hWMt.jpg",
-    "Scholarship Category": "Need-based",
-    "University location/address": {
+    "universityName": "University of Melbourne",
+    "universityImage": "https://i.imgur.com/h62hWMt.jpg",
+    "scholarshipCategory": "Need-based",
+    "university_Location": {
       "country": "Australia",
       "city": "Melbourne"
     },
-    "Application Deadline": "2024-11-20",
-    "Subject Category": "Medicine",
-    "Application Fees": 110,
+    "applicationDeadline": "2024-11-20",
+    "subjectCategory": "Medicine",
+    "applicationFees": 110,
     "Rating": 4.7,
     "ScholarshipDetailsField": "The University of Melbourne Need-based Scholarship for Medicine provides significant financial support to students facing economic challenges. It covers tuition and living expenses, enabling students to focus on their rigorous medical studies. Scholars gain access to Melbourne's leading medical research facilities and are mentored by experienced professionals in the field."
   },
   {
-    "University Name": "University of Edinburgh",
-    "University Image": "https://i.imgur.com/qxQGwb9.jpg",
-    "Scholarship Category": "International",
-    "University location/address": {
+    "universityName": "University of Edinburgh",
+    "universityImage": "https://i.imgur.com/qxQGwb9.jpg",
+    "scholarshipCategory": "International",
+    "university_Location": {
       "country": "UK",
       "city": "Edinburgh"
     },
-    "Application Deadline": "2024-10-15",
-    "Subject Category": "Law",
-    "Application Fees": 65,
+    "applicationDeadline": "2024-10-15",
+    "subjectCategory": "Law",
+    "applicationFees": 65,
     "Rating": 4.6,
     "ScholarshipDetailsField": "The University of Edinburgh International Scholarship for Law is designed for exceptional international students. It offers full or partial tuition waivers and a living stipend. Scholars are immersed in Edinburgh's rich legal tradition and have opportunities to engage in internships and practical experiences, preparing them for successful legal careers globally."
   },
   {
-    "University Name": "University of Hong Kong",
-    "University Image": "https://i.imgur.com/A1Sf7Ww.jpg",
-    "Scholarship Category": "Research",
-    "University location/address": {
+    "universityName": "University of Hong Kong",
+    "universityImage": "https://i.imgur.com/A1Sf7Ww.jpg",
+    "scholarshipCategory": "Research",
+    "university_Location": {
       "country": "Hong Kong",
       "city": "Hong Kong"
     },
-    "Application Deadline": "2024-09-10",
-    "Subject Category": "Business",
-    "Application Fees": 120,
+    "applicationDeadline": "2024-09-10",
+    "subjectCategory": "Business",
+    "applicationFees": 120,
     "Rating": 4.5,
     "ScholarshipDetailsField": "The University of Hong Kong Research Scholarship in Business supports students conducting high-impact business research. It includes full tuition coverage, a living stipend, and research funding. Scholars are mentored by leading business academics and have the opportunity to collaborate with industry partners, contributing to innovative business solutions."
   },
   {
-    "University Name": "National University of Singapore",
-    "University Image": "https://i.imgur.com/4g8purK.jpg",
-    "Scholarship Category": "Government-funded",
-    "University location/address": {
+    "universityName": "National University of Singapore",
+    "universityImage": "https://i.imgur.com/4g8purK.jpg",
+    "scholarshipCategory": "Government-funded",
+    "university_Location": {
       "country": "Singapore",
       "city": "Singapore"
     },
-    "Application Deadline": "2024-08-20",
-    "Subject Category": "Computer Science",
-    "Application Fees": 85,
+    "applicationDeadline": "2024-08-20",
+    "subjectCategory": "Computer Science",
+    "applicationFees": 85,
     "Rating": 4.8,
     "ScholarshipDetailsField": "The National University of Singapore Government-funded Scholarship for Computer Science is a prestigious award covering tuition fees and providing a generous living stipend. Scholars engage in cutting-edge research, benefit from state-of-the-art facilities, and are part of a vibrant academic community, positioning them at the forefront of technological innovation."
   }

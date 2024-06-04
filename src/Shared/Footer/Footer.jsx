@@ -2,8 +2,8 @@ const Footer = () => {
   return (
     <footer className=" divide-y bg-gray-100 dark:text-gray-800">
       <div className="container flex flex-col justify-between  mx-auto lg:flex-row lg:space-y-0">
-        <div className="grid grid-cols-1 text-sm   w-full justify-center sm:grid-cols-4">
-          <div className="space-y-3 bg-[#1F2937]  px-10 py-24  text-white lg:col-span-2 font-Inter  font-medium md:flex md:justify-end">
+        <div className="grid grid-cols-1 text-sm   w-full justify-center md:grid-cols-4">
+          <div className="space-y-3 bg-[#1F2937]  px-10 py-24  text-white md:col-span-2 font-Inter  font-medium md:flex md:justify-end">
             <div className="  ">
               <h3 className=" text-3xl leading-[39px]">CONTACT US</h3>
               <ul className="space-y-1">
@@ -15,7 +15,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="space-y-3 bg-[#111827] text-white px-10 py-24 lg:col-span-2">
+          <div className="space-y-3 bg-[#111827] text-white px-10 py-24 md:col-span-2">
             <div className="font-Inter  font-medium  dark:text-gray-900">
               <h2 className=" text-3xl leading-[39px]">Follow US</h2>
               <p className=" text-xl leading-[36px]">Join us on social media</p>
