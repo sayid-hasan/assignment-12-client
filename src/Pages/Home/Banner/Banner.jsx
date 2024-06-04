@@ -89,17 +89,19 @@ const Banner = () => {
           <div className="item">
             <img src="https://i.imgur.com/gmrMjEO.jpg" />
             <div className="content">
-              <div className="author">LUNDEV</div>
-              <div className="title">DESIGN SLIDER</div>
-              <div className="topic">ANIMAL</div>
+              <div className="author">Excellence Rewarded</div>
+              <div className="title">
+                Unlock Your Future with Merit-based Scholarships
+              </div>
+              <div className="topic">Merit Scholarships</div>
               <div className="des">
                 {/* <!-- lorem 50 --> */}
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut
-                sequi, rem magnam nesciunt minima placeat, itaque eum neque
-                officiis unde, eaque optio ratione aliquid assumenda facere ab
-                et quasi ducimus aut doloribus non numquam. Explicabo,
-                laboriosam nisi reprehenderit tempora at laborum natus unde. Ut,
-                exercitationem eum aperiam illo illum laudantium?
+                Discover a world of opportunities with our comprehensive list of
+                merit-based scholarships. Whether you&#39;re aiming for top
+                universities like Harvard or seeking specialized programs, we
+                provide the guidance and support you need to turn your academic
+                dreams into reality. Learn how your hard work and dedication can
+                open doors to prestigious institutions worldwide.
               </div>
               <div className="buttons">
                 <button>SEE MORE</button>
@@ -110,16 +112,19 @@ const Banner = () => {
           <div className="item">
             <img src="https://i.imgur.com/UCKhndt.jpg" />
             <div className="content">
-              <div className="author">LUNDEV</div>
-              <div className="title">DESIGN SLIDER</div>
-              <div className="topic">ANIMAL</div>
+              <div className="author">Financial Aid for All</div>
+              <div className="title">
+                Breaking Barriers with Need-based Scholarships
+              </div>
+              <div className="topic">Need Scholarships</div>
               <div className="des">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut
-                sequi, rem magnam nesciunt minima placeat, itaque eum neque
-                officiis unde, eaque optio ratione aliquid assumenda facere ab
-                et quasi ducimus aut doloribus non numquam. Explicabo,
-                laboriosam nisi reprehenderit tempora at laborum natus unde. Ut,
-                exercitationem eum aperiam illo illum laudantium?
+                Don&#39;t let financial constraints hold you back. Explore our
+                extensive range of need-based scholarships designed to support
+                outstanding students from all backgrounds. Institutions like the
+                University of Oxford offer substantial aid to ensure that
+                everyone has the chance to succeed, regardless of their
+                financial situation. Start your journey to academic success
+                today.
               </div>
               <div className="buttons">
                 <button>SEE MORE</button>
@@ -128,18 +133,21 @@ const Banner = () => {
             </div>
           </div>
           <div className="item">
-            <img src="https://i.imgur.com/b00PqxC.jpg" />
+            <img src="https://i.imgur.com/73WLZZ1.jpg" />
             <div className="content">
-              <div className="author">LUNDEV</div>
-              <div className="title">DESIGN SLIDER</div>
-              <div className="topic">ANIMAL</div>
+              <div className="author">Study Anywhere</div>
+              <div className="title">
+                Global Opportunities with International Scholarships
+              </div>
+              <div className="topic">International Aid</div>
               <div className="des">
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ut
-                sequi, rem magnam nesciunt minima placeat, itaque eum neque
-                officiis unde, eaque optio ratione aliquid assumenda facere ab
-                et quasi ducimus aut doloribus non numquam. Explicabo,
-                laboriosam nisi reprehenderit tempora at laborum natus unde. Ut,
-                exercitationem eum aperiam illo illum laudantium?
+                Broaden your horizons and gain global experience with
+                international scholarships. From the University of Toronto to
+                the Australian National University, numerous programs offer full
+                financial support to international students. Embrace the chance
+                to study in diverse cultures and make lifelong connections while
+                earning a world-class education. Discover your path to
+                international success.
               </div>
               <div className="buttons">
                 <button>SEE MORE</button>
@@ -152,22 +160,22 @@ const Banner = () => {
           <div className="item">
             <img src="https://i.imgur.com/gmrMjEO.jpg" />
             <div className="content">
-              <div className="title">Name Slider</div>
-              <div className="description">Description</div>
+              <div className="title">Excellence Rewarded</div>
+              <div className="description">Merit Scholarship</div>
             </div>
           </div>
           <div className="item">
             <img src="https://i.imgur.com/UCKhndt.jpg" />
             <div className="content">
-              <div className="title">Name Slider</div>
-              <div className="description">Description</div>
+              <div className="title">Financial Aid for All</div>
+              <div className="description">Need Scholarships</div>
             </div>
           </div>
           <div className="item">
-            <img src="https://i.imgur.com/b00PqxC.jpg" />
+            <img src="https://i.imgur.com/73WLZZ1.jpg" />
             <div className="content">
-              <div className="title">Name Slider</div>
-              <div className="description">Description</div>
+              <div className="title">Study Anywhere</div>
+              <div className="description">International Aid</div>
             </div>
           </div>
         </div>

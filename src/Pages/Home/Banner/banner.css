@@ -54,7 +54,7 @@ header a {
 }
 .carousel .list .item .title,
 .carousel .list .item .topic {
-  font-size: 5em;
+  font-size: 30px;
   font-weight: bold;
   line-height: 1.3em;
 }
@@ -303,6 +303,6 @@ header a {
     padding-right: 0;
   }
   .carousel .list .item .content .title {
-    font-size: 30px;
+    font-size: 24px;
   }
 }
