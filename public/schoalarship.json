@@ -7,6 +7,7 @@
       "country": "USA",
       "city": "Cambridge"
     },
+    "postDate": "2024-2-2",
     "applicationDeadline": "2024-12-01",
     "subjectCategory": "All Subjects",
     "applicationFees": 75,
@@ -21,6 +22,7 @@
       "country": "UK",
       "city": "Oxford"
     },
+    "postDate": "2024-2-3",
     "applicationDeadline": "2024-11-15",
     "subjectCategory": "Humanities",
     "applicationFees": 60,
@@ -35,6 +37,7 @@
       "country": "Canada",
       "city": "Toronto"
     },
+    "postDate": "2024-2-4",
     "applicationDeadline": "2024-10-30",
     "subjectCategory": "Science and Engineering",
     "applicationFees": 90,
@@ -49,6 +52,7 @@
       "country": "Australia",
       "city": "Canberra"
     },
+    "postDate": "2024-2-5",
     "applicationDeadline": "2024-09-25",
     "subjectCategory": "Social Sciences",
     "applicationFees": 100,
@@ -63,6 +67,7 @@
       "country": "Japan",
       "city": "Tokyo"
     },
+    "postDate": "2024-2-7",
     "applicationDeadline": "2024-08-31",
     "subjectCategory": "Technology",
     "applicationFees": 10000,
@@ -77,6 +82,7 @@
       "country": "Switzerland",
       "city": "Zurich"
     },
+    "postDate": "2024-2-11",
     "applicationDeadline": "2024-07-20",
     "subjectCategory": "Engineering",
     "applicationFees": 50,
@@ -91,6 +97,7 @@
       "country": "USA",
       "city": "Stanford"
     },
+    "postDate": "2024-2-15",
     "applicationDeadline": "2024-12-05",
     "subjectCategory": "All Subjects",
     "applicationFees": 80,
@@ -105,6 +112,7 @@
       "country": "Australia",
       "city": "Melbourne"
     },
+    "postDate": "2024-2-18",
     "applicationDeadline": "2024-11-20",
     "subjectCategory": "Medicine",
     "applicationFees": 110,
@@ -119,6 +127,7 @@
       "country": "UK",
       "city": "Edinburgh"
     },
+    "postDate": "2024-2-20",
     "applicationDeadline": "2024-10-15",
     "subjectCategory": "Law",
     "applicationFees": 65,
@@ -133,6 +142,7 @@
       "country": "Hong Kong",
       "city": "Hong Kong"
     },
+    "postDate": "2024-2-24",
     "applicationDeadline": "2024-09-10",
     "subjectCategory": "Business",
     "applicationFees": 120,
@@ -147,6 +157,7 @@
       "country": "Singapore",
       "city": "Singapore"
     },
+    "postDate": "2024-2-27",
     "applicationDeadline": "2024-08-20",
     "subjectCategory": "Computer Science",
     "applicationFees": 85,

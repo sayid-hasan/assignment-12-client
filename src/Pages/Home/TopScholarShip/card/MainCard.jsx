@@ -35,7 +35,7 @@ const MainCard = ({ item }) => {
             "
           ></div>
         </div>
-        <div className="py-5 px-3">
+        <div className="py-5 px-3 min-h-[75px] box-border flex flex-col justify-between">
           <h5 className="mb-2 text-3xl font-Jaro font-bold tracking-wide text-gray-900 dark:text-white">
             {item?.universityName}
           </h5>
@@ -70,7 +70,7 @@ const MainCard = ({ item }) => {
           </div>
 
           {/* button */}
-          <button className=" inline-flex font-Jaro w-full transition items-center justify-center px-5 py-3 text-base font-medium text-center text-black border border-[#FF7F46] bg-transparent rounded-lg hover:bg-[#FF7F46] hover:border-white hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-[#FF7F46]">
+          <button className=" self-end inline-flex font-Jaro w-full transition items-center justify-center px-5 py-3 text-base font-medium text-center text-black border border-[#FF7F46] bg-transparent rounded-lg hover:bg-[#FF7F46] hover:border-white hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-[#FF7F46]">
             View Details
             <svg
               className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
