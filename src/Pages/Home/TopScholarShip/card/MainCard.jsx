@@ -43,6 +43,9 @@ const MainCard = ({ item }) => {
           <p className="mb-3 font-bold text-[#FF7F46] tracking-wide  font-Cinzel text-base dark:text-gray-400">
             {item?.scholarshipCategory}
           </p>
+          <p className="mb-3 font-bold font-Cinzel tracking-wide   text-base dark:text-gray-400">
+            <span className="font-Inter "> Posted On : </span> {item?.postDate}
+          </p>
 
           <div className="mb-3 font-bold  w-full tracking-wide  font-Cinzel text-base flex justify-between dark:text-gray-400">
             <div className="w-1/2">
