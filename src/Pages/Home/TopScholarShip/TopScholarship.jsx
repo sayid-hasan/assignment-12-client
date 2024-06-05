@@ -15,6 +15,10 @@ const TopScholarship = () => {
   });
   console.log(topScholarships);
 
+  if (isLoading) {
+    return <div className="loading-spinner"></div>;
+  }
+
   // calculate posteddate
 
   return (

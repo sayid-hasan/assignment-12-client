@@ -4,6 +4,7 @@ import Home from "../Pages/Home/Home/Home";
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import ErrorPage from "../Pages/Errorpage/ErrorPage";
+import ScholarshipDetails from "../Pages/ScholarshipDetails/ScholarshipDetails";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "/scholarships/:id",
+        element: <ScholarshipDetails></ScholarshipDetails>,
       },
     ],
   },

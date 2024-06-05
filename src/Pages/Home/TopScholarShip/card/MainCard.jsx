@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const MainCard = ({ item }) => {
   return (
@@ -73,24 +74,27 @@ const MainCard = ({ item }) => {
           </div>
 
           {/* button */}
-          <button className=" self-end inline-flex font-Jaro w-full transition items-center justify-center px-5 py-3 text-base font-medium text-center text-black border border-[#FF7F46] bg-transparent rounded-lg hover:bg-[#FF7F46] hover:border-white hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-[#FF7F46]">
-            View Details
-            <svg
-              className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
-              aria-hidden="true"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 14 10"
-            >
-              <path
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M1 5h12m0 0L9 1m4 4L9 9"
-              />
-            </svg>
-          </button>
+          <Link to={`/scholarships/${item._id}`}>
+            {" "}
+            <button className=" self-end inline-flex font-Jaro w-full transition items-center justify-center px-5 py-3 text-base font-medium text-center text-black border border-[#FF7F46] bg-transparent rounded-lg hover:bg-[#FF7F46] hover:border-white hover:text-white focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-[#FF7F46]">
+              View Details
+              <svg
+                className="rtl:rotate-180 w-3.5 h-3.5 ms-2"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 14 10"
+              >
+                <path
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M1 5h12m0 0L9 1m4 4L9 9"
+                />
+              </svg>
+            </button>
+          </Link>
         </div>
       </div>
     </>
