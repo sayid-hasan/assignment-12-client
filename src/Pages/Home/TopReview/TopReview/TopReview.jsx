@@ -15,6 +15,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import SectionTitle from "../../../../Components/SectionTitle/SectionTitle";
 import { FaQuoteRight } from "react-icons/fa";
+import "./TopReview.css";
 
 import "./../shared/ReviewCard/reviewCard.css";
 
@@ -47,14 +48,14 @@ const TopReview = () => {
   console.log(topReviews);
 
   return (
-    <div className="max-w-5xl mx-auto mb-20">
+    <div className="max-w-7xl h-fit mx-auto py-5 ">
       <div>
         <SectionTitle
           subheading={"<<< What Our Clients Say >>>"}
           heading={"People's voice"}
         ></SectionTitle>
       </div>
-      <div>
+      <div className=" card-bg font-Inter bg-opacity-45 box-border dashed-border text-white py-8">
         <Swiper
           slidesPerView={1}
           spaceBetween={30}
@@ -68,7 +69,7 @@ const TopReview = () => {
         >
           {topReviews.map((review, idx) => (
             <SwiperSlide key={idx}>
-              <div className="flex flex-col gap-4 py-5 box-border items-center">
+              <div className="flex flex-col gap-4 py-5  items-center">
                 <div className="img-container">
                   <img
                     src={review?.userImage}
@@ -83,7 +84,6 @@ const TopReview = () => {
                   style={{
                     maxWidth: 250,
                   }}
-                  className="text-[#49a6e9]"
                   value={review.ratingPoint}
                   readOnly
                 />
@@ -92,10 +92,10 @@ const TopReview = () => {
                   {/* review.reviewDate.toLocaleDateString("de-DE", options) */}
                   {getDate(review)}
                 </p>
-                <p className="text-xl max-w-[800px] text-center">
+                <p className="text-2xl font-Cinzel max-w-[800px] text-center">
                   {review?.reviewComment}
                 </p>
-                <p className="text-[#49a6e9] font-Inter font-medium text-3xl leading-[39px]">
+                <p className="text-[#FF7F46] font-Inter font-medium text-3xl leading-[39px]">
                   {review?.loggedInUserName}
                 </p>
               </div>
