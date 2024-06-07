@@ -1,7 +1,28 @@
 import PropTypes from "prop-types";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const MainCard = ({ item }) => {
+  // const [postedDateString, setPostedDateString] = useState(null);
+  // // Get the posted date from the scholarship object
+  // const postedDate = new Date(item.postDate);
+
+  // // Calculate the time difference in milliseconds between the current date and the posted date
+  // const timeDifference = Date.now() - postedDate.getTime();
+
+  // // Convert the time difference from milliseconds to days
+  // const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+
+  // // Construct the user-friendly string based on the number of days difference
+
+  // if (daysDifference === 0) {
+  //   setPostedDateString("Today");
+  // } else if (daysDifference === 1) {
+  //   setPostedDateString("Yesterday");
+  // } else {
+  //   setPostedDateString(`${daysDifference} + " days ago"`);
+  // }
+
   return (
     <>
       {" "}
@@ -45,7 +66,7 @@ const MainCard = ({ item }) => {
             {item?.scholarshipCategory}
           </p>
           <p className="mb-3 font-bold font-Cinzel tracking-wide   text-base dark:text-gray-400">
-            <span className="font-Inter "> Posted On : </span> {item?.postDate}
+            <span className="font-Inter "> Posted On :</span> {item?.postDate}
           </p>
 
           <div className="mb-3 font-bold  w-full tracking-wide  font-Cinzel text-base flex justify-between dark:text-gray-400">
