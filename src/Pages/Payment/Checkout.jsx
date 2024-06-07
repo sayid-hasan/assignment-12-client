@@ -5,7 +5,7 @@ import Field from "./Field";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 // card options
@@ -69,7 +69,8 @@ const ErrorMessage = ({ children }) => (
   </div>
 );
 
-const Checkout = () => {
+const Checkout = ({ applicationFees, scholarshipId }) => {
+  console.log(applicationFees);
   const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
@@ -95,17 +96,17 @@ const Checkout = () => {
   const axiosPublic = useAxiosPublic();
 
   // api call for paymentIntent
-  const totalPrice = 69;
+
   useEffect(() => {
-    if (totalPrice) {
+    if (applicationFees) {
       axiosPublic
-        .post("/create-payment-intent", { price: totalPrice })
+        .post("/create-payment-intent", { price: applicationFees })
         .then((res) => {
           console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
         });
     }
-  }, [axiosPublic, totalPrice]);
+  }, [axiosPublic, applicationFees]);
   console.log("client", clientSecret);
   // handle submit process EVENT
 
@@ -173,27 +174,26 @@ const Checkout = () => {
         setTransactionId(paymentIntent.id);
         // now save info in database
 
-        // const payment = {
-        //   email: user.email,
-        //   price: totalPrice,
-        //   date: new Date(),
-        //   transactionId: paymentIntent.id,
-        //   cartId: carts.map((item) => item._id),
-        //   menuItemIds: carts.map((item) => item.menuId),
-        //   status: "pending",
-        // };
-        // const res = await axiosSecure.post("/payments", payment);
-        // console.log("payment savedd", res.data);
-        // if (res.data?.paymentResult?.insertedId) {
-        //   refetch();
-        //   Swal.fire({
-        //     position: "top-end",
-        //     icon: "success",
-        //     title: "thannk you for ordering",
-        //     showCancelButton: false,
-        //     timer: 1500,
-        //   });
-        navigate("/");
+        const payment = {
+          email: user.email,
+          name: user.displayName,
+          price: applicationFees,
+          date: new Date(),
+          transactionId: paymentIntent.id,
+          scholarshipId,
+        };
+        const res = await axiosPublic.post("/payments", payment);
+        console.log("payment savedd", res.data);
+        if (res.data?.paymentResult?.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "thannk you for ordering",
+            showCancelButton: false,
+            timer: 1500,
+          });
+          navigate("/");
+        }
       }
     }
   };
@@ -201,62 +201,76 @@ const Checkout = () => {
   // confirm payment
 
   return (
-    <form
-      className=" form flex flex-col justify-center  max-w-2xl mx-auto my-8"
-      onSubmit={handleSubmit}
-    >
-      <fieldset className="FormGroup">
-        {/*  */}
-        <Field
-          label="Name"
-          id="name"
-          type="text"
-          placeholder="Jane Doe"
-          required
-          autoComplete="name"
-          readonly={true}
-          value={user?.displayName}
-        />
-        <Field
-          label="Email"
-          id="email"
-          type="email"
-          placeholder="janedoe@gmail.com"
-          required
-          autoComplete="email"
-          readonly={true}
-          value={user?.email}
-        />
-        <Field
-          label="Phone"
-          id="phone"
-          type="tel"
-          placeholder="(941) 555-0123"
-          required
-          autoComplete="tel"
-          value={billingDetails.phone}
-          onChange={(e) => {
-            setBillingDetails({ ...billingDetails, phone: e.target.value });
-          }}
-        />
-      </fieldset>
-      <fieldset className="FormGroup">
-        <CardField
-          onChange={(e) => {
-            setError(e.error);
-            setCardComplete(e.complete);
-          }}
-        />
-      </fieldset>
-      {error && <ErrorMessage>{error.message}</ErrorMessage>}
-      <SubmitButton
-        processing={processing}
-        error={error}
-        disabled={!stripe || !clientSecret}
+    //   DETAILED CARD
+    paymentMethod && paymentIntent ? (
+      <div className="Result">
+        <div className="ResultTitle" role="alert">
+          Payment successful
+        </div>
+        <div className="ResultMessage">
+          you&#39;ll recieve your order in shortest possible time .{" "}
+          {applicationFees} aed was charged, transaction id is {transactionId}
+        </div>
+        {navigate("/")}
+      </div>
+    ) : (
+      <form
+        className=" form flex flex-col justify-center  max-w-2xl mx-auto my-8"
+        onSubmit={handleSubmit}
       >
-        Pay {totalPrice}
-      </SubmitButton>
-    </form>
+        <fieldset className="FormGroup">
+          {/*  */}
+          <Field
+            label="Name"
+            id="name"
+            type="text"
+            placeholder="Jane Doe"
+            required
+            autoComplete="name"
+            readonly={true}
+            value={user?.displayName}
+          />
+          <Field
+            label="Email"
+            id="email"
+            type="email"
+            placeholder="janedoe@gmail.com"
+            required
+            autoComplete="email"
+            readonly={true}
+            value={user?.email}
+          />
+          <Field
+            label="Phone"
+            id="phone"
+            type="tel"
+            placeholder="(941) 555-0123"
+            required
+            autoComplete="tel"
+            value={billingDetails.phone}
+            onChange={(e) => {
+              setBillingDetails({ ...billingDetails, phone: e.target.value });
+            }}
+          />
+        </fieldset>
+        <fieldset className="FormGroup">
+          <CardField
+            onChange={(e) => {
+              setError(e.error);
+              setCardComplete(e.complete);
+            }}
+          />
+        </fieldset>
+        {error && <ErrorMessage>{error.message}</ErrorMessage>}
+        <SubmitButton
+          processing={processing}
+          error={error}
+          disabled={!stripe || !clientSecret}
+        >
+          Pay {applicationFees}
+        </SubmitButton>
+      </form>
+    )
   );
 };
 

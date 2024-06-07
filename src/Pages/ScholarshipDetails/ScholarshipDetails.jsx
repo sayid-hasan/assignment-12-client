@@ -30,7 +30,18 @@ const ScholarshipDetails = () => {
     stipend,
     serviceCharge,
     ScholarshipDetailsField,
+    _id,
   } = scholarship;
+  // get review for specific schoalrship based on id
+  const { data: scholarshipReview = {} } = useQuery({
+    queryKey: ["scholarshipReview"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/reviews/${id}`);
+      return res?.data;
+    },
+  });
+  console.log(scholarshipReview);
+
   return (
     <>
       {" "}
@@ -163,7 +174,10 @@ const ScholarshipDetails = () => {
             {/* back to homepage and saved to Bookmarks */}
             <div className="flex justify-between">
               <Link
-                to="/dashboard/payment"
+                to={{
+                  pathname: `/dashboard/payment`,
+                }}
+                state={{ fees: applicationFees, scholarshipId: _id }}
                 className="w-full flex justify-center px-8 py-3 font-semibold rounded bg-[#05A081] text-white"
               >
                 Apply
