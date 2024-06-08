@@ -221,7 +221,7 @@ const ScholarshipDetails = () => {
                 to={{
                   pathname: `/dashboard/payment`,
                 }}
-                state={{ fees: applicationFees, scholarshipId: _id }}
+                state={{ scholarshipId: _id }}
                 className="w-full flex justify-center px-8 py-3 font-semibold rounded bg-[#05A081] text-white"
               >
                 Apply
@@ -248,7 +248,7 @@ const ScholarshipDetails = () => {
               >
                 {scholarshipReview.map((review, idx) => (
                   <SwiperSlide key={idx}>
-                    <div className="grid grid-cols-1 gap-4 py-8 card-bg max-w-1/2 dashed-border items-center">
+                    <div className="grid grid-cols-1 gap-4 py-8 review-background max-w-1/2 dashed-border items-center">
                       <div className="img-container">
                         <img
                           src={review?.userImage}

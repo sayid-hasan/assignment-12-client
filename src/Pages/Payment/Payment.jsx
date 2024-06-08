@@ -7,8 +7,10 @@ import { useLocation } from "react-router-dom";
 const stripePromise = loadStripe(import.meta.env.VITE_PUBLISH_KEY);
 const Payment = () => {
   const { state } = useLocation();
-  console.log("inside payment", state?.fees);
-  const applicationFees = state?.fees;
+  //   console.log("inside payment", state?.scholarshipId);
+
+  const scholarshipId = state?.scholarshipId;
+  //   console.log(scholarshipId);
   return (
     <div className="bg-[#F6F6F6] pt-[100px]">
       <div className=" w-full">
@@ -19,7 +21,7 @@ const Payment = () => {
       </div>
       <div>
         <Elements stripe={stripePromise}>
-          <Checkout applicationFees={applicationFees} />
+          <Checkout scholarshipId={scholarshipId} />
         </Elements>
       </div>
     </div>

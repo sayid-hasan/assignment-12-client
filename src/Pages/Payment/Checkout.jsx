@@ -7,13 +7,15 @@ import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import ApplyFormModal from "./ApplyFormModal";
+import { toast } from "react-toastify";
+import { useQuery } from "@tanstack/react-query";
 
 // card options
 const CARD_OPTIONS = {
   iconStyle: "solid",
   style: {
     base: {
-      width: "inherit",
       iconColor: "#c4f0ff",
 
       color: "#454545",
@@ -37,7 +39,7 @@ const CARD_OPTIONS = {
 
 // cardFields
 const CardField = ({ onChange }) => (
-  <div className=" w-full mx-auto">
+  <div className="  mx-auto">
     <CardElement options={CARD_OPTIONS} onChange={onChange} />
   </div>
 );
@@ -69,7 +71,24 @@ const ErrorMessage = ({ children }) => (
   </div>
 );
 
-const Checkout = ({ applicationFees, scholarshipId }) => {
+const Checkout = ({ scholarshipId }) => {
+  // load data from api for schoalrsg=hip
+  console.log("inside checkout", scholarshipId);
+  const axiosPublic = useAxiosPublic();
+  const { data: scholarship = {} } = useQuery({
+    queryKey: ["schoalrship", scholarshipId],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/scholarships/${scholarshipId}`);
+      return res.data;
+    },
+  });
+  const {
+    applicationFees,
+
+    universityName,
+    scholarshipCategory,
+    subjectCategory,
+  } = scholarship;
   console.log(applicationFees);
   const navigate = useNavigate();
   const stripe = useStripe();
@@ -89,11 +108,12 @@ const Checkout = ({ applicationFees, scholarshipId }) => {
     name: "",
   });
 
+  // modal state
+  const [modal, setModal] = useState(false);
+
   // client secreet
 
   const [clientSecret, setClientSecret] = useState("");
-
-  const axiosPublic = useAxiosPublic();
 
   // api call for paymentIntent
 
@@ -165,6 +185,7 @@ const Checkout = ({ applicationFees, scholarshipId }) => {
     );
     if (confirmError) {
       console.log("confirem errr", confirmError);
+      toast.error("payment Error");
     }
     if (paymentIntent) {
       //   console.log("confirm payment", paymentIntent);
@@ -172,28 +193,31 @@ const Checkout = ({ applicationFees, scholarshipId }) => {
       if (paymentIntent.status === "succeeded") {
         console.log("transaction id", paymentIntent.id);
         setTransactionId(paymentIntent.id);
+        toast.success("payment succeeded");
+        // open modal for data
+        setModal(true);
         // now save info in database
 
-        const payment = {
-          email: user.email,
-          name: user.displayName,
-          price: applicationFees,
-          date: new Date(),
-          transactionId: paymentIntent.id,
-          scholarshipId,
-        };
-        const res = await axiosPublic.post("/payments", payment);
-        console.log("payment savedd", res.data);
-        if (res.data?.paymentResult?.insertedId) {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "thannk you for ordering",
-            showCancelButton: false,
-            timer: 1500,
-          });
-          navigate("/");
-        }
+        // const payment = {
+        //   email: user.email,
+        //   name: user.displayName,
+        //   price: applicationFees,
+        //   date: new Date(),
+        //   transactionId: paymentIntent.id,
+        //   scholarshipId,
+        // };
+        // const res = await axiosPublic.post("/payments", payment);
+        // console.log("payment savedd", res.data);
+        // if (res.data?.paymentResult?.insertedId) {
+        //   Swal.fire({
+        //     position: "top-end",
+        //     icon: "success",
+        //     title: "thannk you for ordering",
+        //     showCancelButton: false,
+        //     timer: 1500,
+        //   });
+
+        // }
       }
     }
   };
@@ -203,16 +227,13 @@ const Checkout = ({ applicationFees, scholarshipId }) => {
   return (
     //   DETAILED CARD
     paymentMethod && paymentIntent ? (
-      <div className="Result">
-        <div className="ResultTitle" role="alert">
-          Payment successful
-        </div>
-        <div className="ResultMessage">
-          you&#39;ll recieve your order in shortest possible time .{" "}
-          {applicationFees} aed was charged, transaction id is {transactionId}
-        </div>
-        {navigate("/")}
-      </div>
+      <ApplyFormModal
+        scholarshipId={scholarshipId}
+        universityName={universityName}
+        modal={modal}
+        scholarshipCategory={scholarshipCategory}
+        subjectCategory={subjectCategory}
+      ></ApplyFormModal>
     ) : (
       <form
         className=" form flex flex-col justify-center  max-w-2xl mx-auto my-8"
@@ -253,13 +274,15 @@ const Checkout = ({ applicationFees, scholarshipId }) => {
             }}
           />
         </fieldset>
-        <fieldset className="FormGroup">
-          <CardField
-            onChange={(e) => {
-              setError(e.error);
-              setCardComplete(e.complete);
-            }}
-          />
+        <fieldset className="FormGroup flex justify-center items-center">
+          <div className="grow">
+            <CardField
+              onChange={(e) => {
+                setError(e.error);
+                setCardComplete(e.complete);
+              }}
+            />
+          </div>
         </fieldset>
         {error && <ErrorMessage>{error.message}</ErrorMessage>}
         <SubmitButton

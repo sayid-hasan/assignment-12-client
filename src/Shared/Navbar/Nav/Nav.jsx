@@ -8,7 +8,8 @@ import logo from "../../../assets/Images/user.png";
 import { TiShoppingCart } from "react-icons/ti";
 import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
-
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 // import useAdmin from "../../Hooks/useAdmin";
 
 const Nav = () => {
@@ -225,6 +226,7 @@ const Nav = () => {
           {buttonProfile}
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
