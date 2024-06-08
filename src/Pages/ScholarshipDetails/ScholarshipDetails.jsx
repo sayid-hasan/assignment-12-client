@@ -4,7 +4,19 @@ import { Link, useParams } from "react-router-dom";
 import "./scholarshipdetails.css";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import { Helmet } from "react-helmet-async";
-import { FaMapLocation } from "react-icons/fa6";
+import { FaMapLocation, FaQuoteRight } from "react-icons/fa6";
+// Import Swiper React components
+import { Swiper, SwiperSlide } from "swiper/react";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+// import required modules
+import { Navigation } from "swiper/modules";
+import ReactStars from "react-rating-stars-component";
+
+// stars
 
 const ScholarshipDetails = () => {
   const { id } = useParams();
@@ -17,6 +29,38 @@ const ScholarshipDetails = () => {
       return res?.data;
     },
   });
+
+  // stars
+
+  const secondExample = {
+    size: 50,
+    count: 5,
+    color: "black",
+    activeColor: "red",
+
+    edit: false,
+    a11y: true,
+    isHalf: true,
+    emptyIcon: <i className="far fa-star" />,
+    halfIcon: <i className="fa fa-star-half-alt" />,
+    filledIcon: <i className="fa fa-star" />,
+    onChange: (newValue) => {
+      console.log(`Example 2: new value is ${newValue}`);
+    },
+  };
+  // date local string
+  const getDate = (review) => {
+    const options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    };
+
+    const date = new Date(review.reviewDate);
+    const result = date.toLocaleDateString("en-GB", options);
+    return result;
+  };
   const {
     universityName,
     universityImage,
@@ -33,7 +77,7 @@ const ScholarshipDetails = () => {
     _id,
   } = scholarship;
   // get review for specific schoalrship based on id
-  const { data: scholarshipReview = {} } = useQuery({
+  const { data: scholarshipReview = [] } = useQuery({
     queryKey: ["scholarshipReview"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/reviews/${id}`);
@@ -48,10 +92,10 @@ const ScholarshipDetails = () => {
       <Helmet>
         <title>Home |{`${universityName}`}</title>
       </Helmet>
-      <div className=" min-h-[400px] container relative background">
+      <div className=" min-h-[400px] container  background">
         {/* title
          */}
-        <div className="pt-[100px]  background">
+        <div className="pt-[100px]  ">
           <SectionTitle
             heading={scholarship?.universityName}
             subheading={"<<< Know more about >>>"}
@@ -188,6 +232,65 @@ const ScholarshipDetails = () => {
 
         {/* review swipper  */}
 
+        {scholarshipReview.length > 0 && (
+          <>
+            <div className=" grid grid-cols-1 font-Inter min-h- bg-opacity-45 box-border  text-white py-8">
+              <Swiper
+                slidesPerView={2}
+                spaceBetween={20}
+                loop={true}
+                pagination={{
+                  clickable: true,
+                }}
+                navigation={true}
+                modules={[Navigation]}
+                className="mySwiper"
+              >
+                {scholarshipReview.map((review, idx) => (
+                  <SwiperSlide key={idx}>
+                    <div className="grid grid-cols-1 gap-4 py-8 card-bg max-w-1/2 dashed-border items-center">
+                      <div className="img-container">
+                        <img
+                          src={review?.userImage}
+                          alt={name}
+                          className="person-img"
+                        />
+                        <span className="quote-icon">
+                          <FaQuoteRight />
+                        </span>
+                      </div>
+                      {/* stars not showing */}
+                      <div className="text-center flex justify-center">
+                        <ReactStars
+                          size={35}
+                          isHalf={true}
+                          emptyIcon={<i className="far fa-star"></i>}
+                          halfIcon={<i className="fa fa-star-half-alt"></i>}
+                          fullIcon={<i className="fa fa-star"></i>}
+                          activeColor="#ffd700"
+                          color="#f4f5f6"
+                          value={review?.ratingPoint}
+                          edit={false}
+                        />
+                      </div>
+
+                      <p className="text-xl max-w-[800px] text-center">
+                        {/* review.reviewDate.toLocaleDateString("de-DE", options) */}
+                        {getDate(review)}
+                      </p>
+                      <p className="text-xl font-Cinzel max-w-[800px] text-center">
+                        {review?.reviewComment}
+                      </p>
+                      <p className="text-[#FF7F46] font-Inter font-medium text-3xl leading-[39px]">
+                        {review?.loggedInUserName}
+                      </p>
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+          </>
+        )}
         {/* wave svg bg */}
         {/* <div className="lottie-body mt-[300px] ">
           <div className="ocean">

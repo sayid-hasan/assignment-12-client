@@ -12,7 +12,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 // import required modules
-import { Navigation } from "swiper/modules";
+import { FreeMode, Navigation } from "swiper/modules";
 import SectionTitle from "../../../../Components/SectionTitle/SectionTitle";
 import { FaQuoteRight } from "react-icons/fa";
 import "./TopReview.css";
@@ -57,15 +57,14 @@ const TopReview = () => {
       </div>
       <div className=" card-bg font-Inter bg-opacity-45 box-border dashed-border text-white py-8">
         <Swiper
-          slidesPerView={1}
-          spaceBetween={30}
+          slidesPerView={3}
           loop={true}
           pagination={{
             clickable: true,
           }}
           navigation={true}
-          modules={[Navigation]}
-          className="mySwiper"
+          modules={[Navigation, FreeMode]}
+          className="mySwiper  "
         >
           {topReviews.map((review, idx) => (
             <SwiperSlide key={idx}>
