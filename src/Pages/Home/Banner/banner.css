@@ -51,12 +51,14 @@ header a {
 .carousel .list .item .author {
   font-weight: bold;
   letter-spacing: 10px;
+  text-align: left;
 }
 .carousel .list .item .title,
 .carousel .list .item .topic {
   font-size: 30px;
   font-weight: bold;
-  line-height: 1.3em;
+
+  text-align: left;
 }
 .carousel .list .item .topic {
   color: #f1683a;
@@ -91,6 +93,9 @@ header a {
   display: flex;
   gap: 20px;
 }
+.thumbnail .content .title {
+  margin-bottom: 10px;
+}
 .thumbnail .item {
   width: 150px;
   height: 220px;
@@ -109,9 +114,13 @@ header a {
   bottom: 10px;
   left: 10px;
   right: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .thumbnail .item .content .title {
   font-weight: 500;
+  text-align: left;
 }
 .thumbnail .item .content .description {
   font-weight: 300;
@@ -194,6 +203,9 @@ header a {
   border-radius: 30px;
   animation: showImage 0.5s linear 1 forwards;
 }
+.carousel .content .title {
+  margin-bottom: 1rem;
+}
 @keyframes showImage {
   to {
     bottom: 0;
@@ -210,6 +222,10 @@ header a {
 }
 .carousel.prev .list .item img {
   z-index: 100;
+}
+.carousel .content {
+  display: flex;
+  flex-direction: column;
 }
 @keyframes showThumbnail {
   from {

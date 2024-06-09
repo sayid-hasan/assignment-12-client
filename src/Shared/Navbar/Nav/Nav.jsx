@@ -5,7 +5,7 @@ import { useContext } from "react";
 
 import logo from "../../../assets/Images/user.png";
 // import Swal from "sweetalert2";
-import { TiShoppingCart } from "react-icons/ti";
+
 import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import "react-toastify/dist/ReactToastify.css";

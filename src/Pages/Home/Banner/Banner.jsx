@@ -16,7 +16,7 @@ const Banner = () => {
   const carouselDom = useRef(null);
 
   const timeRunning = 3000;
-  const timeAutoNext = 7000;
+  const timeAutoNext = 10000;
 
   useEffect(() => {
     const initialSliderItems = Array.from(
