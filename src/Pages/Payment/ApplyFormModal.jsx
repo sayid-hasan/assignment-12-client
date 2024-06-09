@@ -194,6 +194,7 @@ const ApplyFormModal = ({
                         authenticator={authenticator}
                       >
                         <IKUpload
+                          required={true}
                           onError={onError}
                           onSuccess={onSuccess}
                           useUniqueFileName={true}

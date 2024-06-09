@@ -48,18 +48,23 @@ const ScholarshipDetails = () => {
     return result;
   };
   const {
+    // scholarshipName,
     universityName,
     universityImage,
-    scholarshipCategory,
-    university_Location,
-    postDate,
-    applicationDeadline,
+    universityCountry,
+    universityCity,
+    // universityWorldRank,
     subjectCategory,
+    scholarshipCategory,
+    // degree,
+    // tuitionFees,
     applicationFees,
-    Rating,
-    stipend,
     serviceCharge,
+    applicationDeadline,
+    postDate,
     ScholarshipDetailsField,
+    // postedUserEmail,
+    stipend,
     _id,
   } = scholarship;
   // get review for specific schoalrship based on id
@@ -103,7 +108,7 @@ const ScholarshipDetails = () => {
                 <FaMapLocation></FaMapLocation>
               </span>
               <span className="text-xl font-bold tracking-widest text-black">
-                {(university_Location?.city, university_Location?.country)}
+                {(universityCity, universityCountry)}
               </span>
             </div>
           </div>
@@ -133,7 +138,7 @@ const ScholarshipDetails = () => {
                 </div>
                 <div>
                   <div className="md:text-xl text-base font-bold flex justify-center gap-2">
-                    {Rating}
+                    {4.5}
                   </div>
                   <div className=" flex justify-start">
                     <ReactStars
@@ -144,7 +149,7 @@ const ScholarshipDetails = () => {
                       fullIcon={<i className="fa fa-star"></i>}
                       activeColor="#ffd700"
                       color="#f4f5f6"
-                      value={Rating}
+                      value={4.5}
                       edit={false}
                     />
                   </div>

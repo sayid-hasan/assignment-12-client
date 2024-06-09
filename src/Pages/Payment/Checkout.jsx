@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import ApplyFormModal from "./ApplyFormModal";
 import { toast } from "react-toastify";
 import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 // card options
 const CARD_OPTIONS = {
@@ -75,10 +76,11 @@ const Checkout = ({ scholarshipId }) => {
   // load data from api for schoalrsg=hip
   console.log("inside checkout", scholarshipId);
   const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
   const { data: scholarship = {} } = useQuery({
     queryKey: ["schoalrship", scholarshipId],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/scholarships/${scholarshipId}`);
+      const res = await axiosSecure.get(`/scholarships/${scholarshipId}`);
       return res.data;
     },
   });

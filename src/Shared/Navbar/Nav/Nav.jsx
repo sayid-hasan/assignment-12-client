@@ -36,22 +36,31 @@ const Nav = () => {
     <>
       <li className="flex">
         {" "}
-        <Link
+        <NavLink
           to="/"
+          style={({ isActive }) => {
+            return isActive
+              ? { color: "#FF7F46", background: "transparent" }
+              : {};
+          }}
           className={` 
           flex items-center px-4 rounded-none pt-4 uppercase text-base   font-Inter `}
         >
           Home
-        </Link>
+        </NavLink>
       </li>
 
       <li className="flex"> </li>
       {
         <>
           <li className="flex">
-            {" "}
             <NavLink
-              to="/allscholarships"
+              to="/allscholarship"
+              style={({ isActive }) => {
+                return isActive
+                  ? { color: "#FF7F46", background: "transparent" }
+                  : {};
+              }}
               className={` flex items-center px-4 rounded-none  pt-4 uppercase text-base  font-Inter`}
             >
               All ScholarShip
@@ -63,7 +72,11 @@ const Nav = () => {
       <li className="flex">
         {user && isAdmin && (
           <Link
-            to="/dashboard/adminhome"
+            style={({ isActive }) => {
+              return isActive ? { color: "#FF7F46" } : {};
+            }}
+            //todo: need to add userHome in route to navigate into userhome
+            to="/dashboard"
             className={`  flex items-center px-4 rounded-none  pt-4 uppercase text-base  font-Inter`}
           >
             Dashboard
@@ -71,7 +84,7 @@ const Nav = () => {
         )}
         {user && !isAdmin && (
           <Link
-            to="/dashboard/userhome"
+            to="/dashboard"
             className={`  flex items-center px-4 rounded-none  pt-4 uppercase text-base  font-Inter`}
           >
             Dashboard
@@ -127,7 +140,7 @@ const Nav = () => {
               <>
                 <Link
                   to="/login"
-                  className="self-center px-14 h-auto text-xl tracking-wide py-3 rounded-full font-semibold  bg-[#FF7F46] text-white"
+                  className="self-center px-14 border border-transparent h-auto text-xl hover:bg-transparent hover:border-[#FF7F46]  tracking-wide py-3 rounded-full font-semibold  bg-[#FF7F46] text-white"
                 >
                   Sign in
                 </Link>

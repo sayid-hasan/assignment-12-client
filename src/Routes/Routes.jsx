@@ -8,6 +8,7 @@ import ScholarshipDetails from "../Pages/ScholarshipDetails/ScholarshipDetails";
 import Payment from "../Pages/Payment/Payment";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard/Dashboard";
+import AllScholarships from "../Pages/allscholarship/AllScholarsShips";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignUp></SignUp>,
+      },
+      {
+        path: "/allscholarship",
+        element: <AllScholarships></AllScholarships>,
       },
       {
         path: "/scholarships/:id",

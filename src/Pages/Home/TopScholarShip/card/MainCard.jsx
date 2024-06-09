@@ -78,7 +78,7 @@ const MainCard = ({ item }) => {
               fullIcon={<i className="fa fa-star"></i>}
               activeColor="#ffd700"
               color="#f4f5f6"
-              value={item?.Rating}
+              value={4.5}
               edit={false}
             />
           </div>
@@ -99,8 +99,7 @@ const MainCard = ({ item }) => {
           </div>
           <div className="mb-3 font-bold  w-full tracking-wide  font-Cinzel text-base flex justify-between dark:text-gray-400">
             <div className="w-1/2">
-              {item?.university_Location?.city},{" "}
-              {item?.university_Location?.country}
+              {item?.universityCity}, {item?.universityCountry}
             </div>
             <div className="w-1/2">
               <span className="font-Inter "> Fees : </span>{" "}
