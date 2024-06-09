@@ -43,27 +43,17 @@ const Nav = () => {
           Home
         </Link>
       </li>
-      <li className="flex">
-        {" "}
-        {
-          <Link
-            to="/"
-            className={`  flex items-center px-4 rounded-none  pt-4 uppercase text-base  font-Inter`}
-          >
-            Contact Us
-          </Link>
-        }
-      </li>
+
       <li className="flex"> </li>
       {
         <>
           <li className="flex">
             {" "}
             <NavLink
-              to="/menu"
+              to="/allscholarships"
               className={` flex items-center px-4 rounded-none  pt-4 uppercase text-base  font-Inter`}
             >
-              Our Menu
+              All ScholarShip
             </NavLink>
           </li>
         </>
@@ -87,36 +77,6 @@ const Nav = () => {
           </Link>
         )}
       </li> */}
-
-      {
-        <>
-          <li className="flex">
-            {" "}
-            <Link
-              to={`/order/salad`}
-              className={`flex items-center px-4 rounded-none  pt-4 uppercase text-base   font-Inter`}
-            >
-              Our shop
-            </Link>
-          </li>
-        </>
-      }
-      {
-        <>
-          <li className="flex">
-            {" "}
-            <Link
-              to={`/dashboard/cart`}
-              className={`flex items-center px-4 rounded-none  pt-4 uppercase text-base   font-Inter relative mr-4`}
-            >
-              <div className="text-3xl">
-                {" "}
-                <TiShoppingCart />
-              </div>
-            </Link>
-          </li>
-        </>
-      }
     </>
   );
 

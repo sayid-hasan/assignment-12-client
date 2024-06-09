@@ -61,7 +61,7 @@ const ApplyFormModal = ({
   const onSubmit = async (data) => {
     const {
       applicantPhone,
-      image,
+
       applicantAddress,
       applicantGender,
       applicantAspiredDegree,

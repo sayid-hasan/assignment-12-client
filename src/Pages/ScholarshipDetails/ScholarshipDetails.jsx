@@ -32,22 +32,6 @@ const ScholarshipDetails = () => {
 
   // stars
 
-  const secondExample = {
-    size: 50,
-    count: 5,
-    color: "black",
-    activeColor: "red",
-
-    edit: false,
-    a11y: true,
-    isHalf: true,
-    emptyIcon: <i className="far fa-star" />,
-    halfIcon: <i className="fa fa-star-half-alt" />,
-    filledIcon: <i className="fa fa-star" />,
-    onChange: (newValue) => {
-      console.log(`Example 2: new value is ${newValue}`);
-    },
-  };
   // date local string
   const getDate = (review) => {
     const options = {
@@ -146,19 +130,21 @@ const ScholarshipDetails = () => {
                   </div>
                 </div>
                 <div>
-                  <span className="text-[#05a081] font-Cinzel text-xl font-bold">
-                    Rating :{" "}
-                  </span>
-                  <div className="md:text-xl text-base font-bold flex justify-end gap-2">
+                  <div className="md:text-xl text-base font-bold flex justify-center gap-2">
                     {Rating}
-                    <div className="rating rating-sm md:rating-md">
-                      {" "}
-                      <input
-                        type="radio"
-                        name="rating-7"
-                        className="mask mask-star-2 bg-orange-400"
-                      />
-                    </div>
+                  </div>
+                  <div className=" flex justify-start">
+                    <ReactStars
+                      size={35}
+                      isHalf={true}
+                      emptyIcon={<i className="far fa-star"></i>}
+                      halfIcon={<i className="fa fa-star-half-alt"></i>}
+                      fullIcon={<i className="fa fa-star"></i>}
+                      activeColor="#ffd700"
+                      color="#f4f5f6"
+                      value={Rating}
+                      edit={false}
+                    />
                   </div>
                 </div>
               </div>

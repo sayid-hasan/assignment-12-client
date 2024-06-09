@@ -57,7 +57,7 @@ const TopReview = () => {
       </div>
       <div className=" card-bg font-Inter bg-opacity-45 box-border dashed-border text-white py-8">
         <Swiper
-          slidesPerView={3}
+          slidesPerView={1}
           loop={true}
           pagination={{
             clickable: true,
