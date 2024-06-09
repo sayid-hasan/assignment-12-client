@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import useAxiosPublic from "../../Hooks/useAxiosPublic";
+
 import { Link, useParams } from "react-router-dom";
 import "./scholarshipdetails.css";
 import SectionTitle from "../../Components/SectionTitle/SectionTitle";
@@ -15,17 +15,19 @@ import "swiper/css/navigation";
 // import required modules
 import { Navigation } from "swiper/modules";
 import ReactStars from "react-rating-stars-component";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 // stars
 
 const ScholarshipDetails = () => {
   const { id } = useParams();
   console.log(id);
-  const axiosPublic = useAxiosPublic();
+
+  const axiosSecure = useAxiosSecure();
   const { data: scholarship = {} } = useQuery({
     queryKey: ["schoalrship"],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/scholarships/${id}`);
+      const res = await axiosSecure.get(`/scholarships/${id}`);
       return res?.data;
     },
   });
@@ -64,7 +66,7 @@ const ScholarshipDetails = () => {
   const { data: scholarshipReview = [] } = useQuery({
     queryKey: ["scholarshipReview"],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/reviews/${id}`);
+      const res = await axiosSecure.get(`/reviews/${id}`);
       return res?.data;
     },
   });

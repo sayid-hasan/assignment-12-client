@@ -9,9 +9,9 @@ import {
 } from "firebase/auth";
 import { createContext, useEffect, useState } from "react";
 
-// import useAxiosPublic from "../Hooks/useAxiosPublic";
 import PropTypes from "prop-types";
 import auth from "../../Firebase/firebase.config";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 
@@ -21,7 +21,7 @@ const googleProvider = new GoogleAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  // const axiosPublic = useAxiosPublic();
+  const axiosPublic = useAxiosPublic();
 
   // create User
 
@@ -60,28 +60,28 @@ const AuthProvider = ({ children }) => {
     const unsubscrube = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
-      // console.log("current User ", currentUser);
-      // if (currentUser) {
-      //   console.log(currentUser);
-      //   const userInfo = { email: currentUser.email };
-      //   // sent useremail and get token in response and save it in 1 cookies 2. or localstorage or state/memory
-      //   axiosPublic.post("/jwt", userInfo).then((res) => {
-      //     // console.log("token", res.data.token);
-      //     if (res.data.token) {
-      //       localStorage.setItem("access-token", res.data.token);
-      //       setLoading(false);
-      //     }
-      //   });
-      // } else {
-      //   //erase the token from locastorage or cookie or caching or memory
-      //   localStorage.removeItem("access-token");
-      //   setLoading(false);
-      // }
+      console.log("current User ", currentUser);
+      if (currentUser) {
+        console.log(currentUser);
+        const userInfo = { email: currentUser.email };
+        // sent useremail and get token in response and save it in 1 cookies 2. or localstorage or state/memory
+        axiosPublic.post("/jwt", userInfo).then((res) => {
+          // console.log("token", res.data.token);
+          if (res.data.token) {
+            localStorage.setItem("access-token", res.data.token);
+            setLoading(false);
+          }
+        });
+      } else {
+        //erase the token from locastorage or cookie or caching or memory
+        localStorage.removeItem("access-token");
+        setLoading(false);
+      }
     });
     return () => {
       return unsubscrube();
     };
-  }, []);
+  }, [axiosPublic]);
 
   const authInfo = {
     user,

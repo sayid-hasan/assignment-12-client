@@ -6,6 +6,8 @@ import SignUp from "../Pages/SignUp/SignUp";
 import ErrorPage from "../Pages/Errorpage/ErrorPage";
 import ScholarshipDetails from "../Pages/ScholarshipDetails/ScholarshipDetails";
 import Payment from "../Pages/Payment/Payment";
+import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../Layout/Dashboard/Dashboard";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,12 +28,31 @@ const router = createBrowserRouter([
       },
       {
         path: "/scholarships/:id",
-        element: <ScholarshipDetails></ScholarshipDetails>,
+        element: (
+          <PrivateRoute>
+            <ScholarshipDetails></ScholarshipDetails>
+          </PrivateRoute>
+        ),
       },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
       // dashboard api need to relocate after creating dashboard layout
       {
-        path: "/dashboard/payment",
-        element: <Payment></Payment>,
+        path: "payment",
+        element: (
+          <PrivateRoute>
+            <Payment></Payment>
+          </PrivateRoute>
+        ),
       },
     ],
   },

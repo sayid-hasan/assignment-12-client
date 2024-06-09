@@ -10,13 +10,14 @@ import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import useAdmin from "../../../Hooks/useAdmin";
 // import useAdmin from "../../Hooks/useAdmin";
 
 const Nav = () => {
   const { user, loading, logOut } = useContext(AuthContext);
 
-  // const [isAdmin] = useAdmin();
-  // console.log("isAdmin", isAdmin);
+  const [isAdmin] = useAdmin();
+  console.log("isAdmin", isAdmin);
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -59,7 +60,7 @@ const Nav = () => {
         </>
       }
 
-      {/* <li className="flex">
+      <li className="flex">
         {user && isAdmin && (
           <Link
             to="/dashboard/adminhome"
@@ -76,7 +77,7 @@ const Nav = () => {
             Dashboard
           </Link>
         )}
-      </li> */}
+      </li>
     </>
   );
 
