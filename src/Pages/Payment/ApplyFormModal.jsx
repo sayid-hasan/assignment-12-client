@@ -2,6 +2,9 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import { toast } from "react-toastify";
+import { IKContext, IKUpload } from "imagekitio-react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ApplyFormModal = ({
   modal,
@@ -9,8 +12,10 @@ const ApplyFormModal = ({
   universityName,
   scholarshipCategory,
   subjectCategory,
+  setModal,
 }) => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
   //   console.log(user);
   // react form hook
@@ -21,6 +26,37 @@ const ApplyFormModal = ({
     // reset,
     formState: { errors },
   } = useForm();
+  const [imageUrl, setImageUrl] = useState(null);
+  // get authentication params for image uplaod in imagekit from server
+  const authenticator = async () => {
+    try {
+      // You can also pass headers and validate the request source in the backend, or you can use headers for any other use case.
+
+      const response = await fetch("http://localhost:5500/get-signature");
+
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(
+          `Request failed with status ${response.status}: ${errorText}`
+        );
+      }
+
+      const data = await response.json();
+      const { signature, expire, token } = data;
+      console.log(data);
+      return { signature, expire, token };
+    } catch (error) {
+      throw new Error(`Authentication request failed: ${error.message}`);
+    }
+  };
+  const onError = (err) => {
+    console.log("Error", err);
+  };
+
+  const onSuccess = (res) => {
+    console.log("Success", res);
+    setImageUrl(res.url);
+  };
   // getdata from onsubmit
   const onSubmit = async (data) => {
     const {
@@ -33,9 +69,10 @@ const ApplyFormModal = ({
       applicantHscResult,
       applicantStudyGap,
     } = data;
+    console.log(imageUrl);
     const appliedScholarshipData = {
       applicantPhone,
-      image,
+      imageUrl,
       applicantAddress,
       applicantGender,
       applicantAspiredDegree,
@@ -52,16 +89,22 @@ const ApplyFormModal = ({
     };
     console.log(appliedScholarshipData);
     //   save data on database as appliedScholarships
-    const res = await axiosPublic.post(
-      "/appliedScholarship",
-      appliedScholarshipData
-    );
-    console.log(res.data);
-    if (res.data.insertedId) {
-      toast.success("successfully applied");
-    }
-    if (errors.res.data?.message) {
-      toast.warn(res.response?.data?.message);
+    try {
+      const res = await axiosPublic.post(
+        "/appliedScholarship",
+        appliedScholarshipData
+      );
+      console.log(res.data);
+      if (res.data.insertedId) {
+        toast.success("successfully applied");
+        navigate("/");
+        setModal(false);
+      }
+    } catch (err) {
+      console.log(err);
+      toast.warn(
+        ` ${applicantPhone} applicant already applied for this. try another one `
+      );
     }
   };
   return (
@@ -135,6 +178,31 @@ const ApplyFormModal = ({
                       )}
                     </div>
                     {/*  and photo */}
+
+                    {/* ikimage upload */}
+
+                    <div className="col-span-2 sm:col-span-1">
+                      <label
+                        htmlFor="photo"
+                        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                      >
+                        photo
+                      </label>
+                      <IKContext
+                        publicKey={"public_T4zX45oipeTjSumsrvipza8t/Lo="}
+                        urlEndpoint={"https://ik.imagekit.io/sayidImage34"}
+                        authenticator={authenticator}
+                      >
+                        <IKUpload
+                          onError={onError}
+                          onSuccess={onSuccess}
+                          useUniqueFileName={true}
+                          isPrivateFile={false}
+                        />
+                      </IKContext>
+                    </div>
+                    {/* 
+                    normal uplaod
                     <div className="col-span-2 sm:col-span-1">
                       <label
                         htmlFor="image"
@@ -156,7 +224,7 @@ const ApplyFormModal = ({
                           Image is required
                         </span>
                       )}
-                    </div>
+                    </div> */}
                     {/* address */}
                     <div className="col-span-2 sm:col-span-1">
                       <label

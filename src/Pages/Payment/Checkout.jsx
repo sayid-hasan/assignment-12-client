@@ -198,26 +198,25 @@ const Checkout = ({ scholarshipId }) => {
         setModal(true);
         // now save info in database
 
-        // const payment = {
-        //   email: user.email,
-        //   name: user.displayName,
-        //   price: applicationFees,
-        //   date: new Date(),
-        //   transactionId: paymentIntent.id,
-        //   scholarshipId,
-        // };
-        // const res = await axiosPublic.post("/payments", payment);
-        // console.log("payment savedd", res.data);
-        // if (res.data?.paymentResult?.insertedId) {
-        //   Swal.fire({
-        //     position: "top-end",
-        //     icon: "success",
-        //     title: "thannk you for ordering",
-        //     showCancelButton: false,
-        //     timer: 1500,
-        //   });
-
-        // }
+        const payment = {
+          email: user.email,
+          name: user.displayName,
+          price: applicationFees,
+          date: new Date(),
+          transactionId: paymentIntent.id,
+          scholarshipId,
+        };
+        const res = await axiosPublic.post("/payments", payment);
+        console.log("payment savedd", res.data);
+        if (res.data?.paymentResult?.insertedId) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "thannk you for ordering",
+            showCancelButton: false,
+            timer: 1500,
+          });
+        }
       }
     }
   };
@@ -233,6 +232,7 @@ const Checkout = ({ scholarshipId }) => {
         modal={modal}
         scholarshipCategory={scholarshipCategory}
         subjectCategory={subjectCategory}
+        setModal={setModal}
       ></ApplyFormModal>
     ) : (
       <form
