@@ -5,19 +5,44 @@ import MainCard from "../Home/TopScholarShip/card/MainCard";
 import { Helmet } from "react-helmet-async";
 import { FaSearch } from "react-icons/fa";
 import { useState } from "react";
+import { Pagination, Stack } from "@mui/material";
 
 const AllScholarships = () => {
+  const [page, setPage] = useState(1);
+
   const axiosPublic = useAxiosPublic();
   const [searchText, setSearchText] = useState("");
+  // get count
+  const { data: documentCount = {} } = useQuery({
+    queryKey: ["documentCount"],
+    queryFn: async () => {
+      const res = await axiosPublic.get(`/scholarship-count`);
+      return res.data;
+    },
+  });
+  //   console.log(documentCount);
+  const count = documentCount.count;
+  const pageCount = Math.ceil(count / 6);
+
+  //
+
+  // get all schoalrship
 
   const { data: allScholarships = [], isLoading } = useQuery({
-    queryKey: ["allscholarships", searchText],
+    queryKey: ["allscholarships", searchText, page],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/allsholarship?search=${searchText}`);
+      const res = await axiosPublic.get(
+        `/allsholarship?search=${searchText}&page=${page}&size=${6}`
+      );
       return res.data;
     },
   });
   console.log(allScholarships);
+  // pagination handle page
+  const handleChange = (event, value) => {
+    setPage(value);
+    console.log(page);
+  };
 
   if (isLoading) {
     return <div className="loading-spinner"></div>;
@@ -68,6 +93,24 @@ const AllScholarships = () => {
           {allScholarships.map((item) => (
             <MainCard key={item._id} item={item}></MainCard>
           ))}
+        </div>
+        <div className="flex justify-center">
+          {" "}
+          <Stack
+            spacing={2}
+            sx={{
+              fontSize: "400",
+              marginBottom: "30px",
+            }}
+          >
+            {/* <Typography>Page: {page}</Typography> */}
+            <Pagination
+              size="large"
+              count={pageCount}
+              page={page}
+              onChange={handleChange}
+            />
+          </Stack>
         </div>
       </div>
     </div>

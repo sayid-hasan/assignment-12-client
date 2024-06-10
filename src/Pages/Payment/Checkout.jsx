@@ -5,7 +5,7 @@ import Field from "./Field";
 import useAuth from "../../Hooks/useAuth";
 import Swal from "sweetalert2";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ApplyFormModal from "./ApplyFormModal";
 import { toast } from "react-toastify";
