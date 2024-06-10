@@ -14,9 +14,11 @@ const AllScholarships = () => {
   const [searchText, setSearchText] = useState("");
   // get count
   const { data: documentCount = {} } = useQuery({
-    queryKey: ["documentCount"],
+    queryKey: ["documentCount", searchText],
     queryFn: async () => {
-      const res = await axiosPublic.get(`/scholarship-count`);
+      const res = await axiosPublic.get(
+        `/scholarship-count?search=${searchText}`
+      );
       return res.data;
     },
   });
@@ -52,6 +54,7 @@ const AllScholarships = () => {
     const form = e.target;
     const searchText = form.search.value;
     setSearchText(searchText);
+    setPage(1);
   };
   console.log(searchText);
   return (
