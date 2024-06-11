@@ -16,6 +16,7 @@ import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
 import ReactStars from "react-rating-stars-component";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useAvgRating from "../../Hooks/useAvgRating";
 
 // stars
 
@@ -67,6 +68,7 @@ const ScholarshipDetails = () => {
     stipend,
     _id,
   } = scholarship;
+
   // get review for specific schoalrship based on id
   const { data: scholarshipReview = [] } = useQuery({
     queryKey: ["scholarshipReview"],
@@ -76,7 +78,12 @@ const ScholarshipDetails = () => {
     },
   });
   console.log(scholarshipReview);
-
+  // get Avg rating
+  const [avgRating, avgRatingLoading] = useAvgRating(_id);
+  console.log(avgRating.averageRating);
+  if (avgRatingLoading) {
+    return <div className="loading loading-spinner"></div>;
+  }
   return (
     <>
       {" "}
@@ -138,7 +145,7 @@ const ScholarshipDetails = () => {
                 </div>
                 <div>
                   <div className="md:text-xl text-base font-bold flex justify-center gap-2">
-                    {4.5}
+                    {avgRating?.averageRating}
                   </div>
                   <div className=" flex justify-start">
                     <ReactStars
@@ -149,7 +156,7 @@ const ScholarshipDetails = () => {
                       fullIcon={<i className="fa fa-star"></i>}
                       activeColor="#ffd700"
                       color="#f4f5f6"
-                      value={4.5}
+                      value={avgRating?.averageRating}
                       edit={false}
                     />
                   </div>

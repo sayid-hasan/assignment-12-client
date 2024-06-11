@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 // import { useState } from "react";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
+import useAvgRating from "../../../../Hooks/useAvgRating";
 
 const MainCard = ({ item }) => {
   // const [postedDateString, setPostedDateString] = useState(null);
@@ -23,6 +24,11 @@ const MainCard = ({ item }) => {
   // } else {
   //   setPostedDateString(`${daysDifference} + " days ago"`);
   // }
+  const [avgRating, avgRatingLoading] = useAvgRating(item._id);
+  console.log(avgRating.averageRating);
+  if (avgRatingLoading) {
+    return <div className="loading loading-spinner"></div>;
+  }
 
   return (
     <>
@@ -78,7 +84,7 @@ const MainCard = ({ item }) => {
               fullIcon={<i className="fa fa-star"></i>}
               activeColor="#ffd700"
               color="#f4f5f6"
-              value={4.5}
+              value={avgRating?.averageRating}
               edit={false}
             />
           </div>
