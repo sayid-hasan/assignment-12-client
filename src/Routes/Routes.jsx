@@ -9,6 +9,7 @@ import Payment from "../Pages/Payment/Payment";
 import PrivateRoute from "./PrivateRoute";
 import Dashboard from "../Layout/Dashboard/Dashboard";
 import AllScholarships from "../Pages/allscholarship/AllScholarsShips";
+import Myprofile from "../Pages/Dashboard/User/Myprofile/Myprofile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -51,6 +52,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage></ErrorPage>,
     children: [
       // dashboard api need to relocate after creating dashboard layout
+      // user related api
       {
         path: "payment",
         element: (
@@ -58,6 +60,10 @@ const router = createBrowserRouter([
             <Payment></Payment>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "myprofile",
+        element: <Myprofile></Myprofile>,
       },
     ],
   },

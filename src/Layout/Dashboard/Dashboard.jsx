@@ -42,7 +42,13 @@ const Dashboard = () => {
   };
 
   const drawer = (
-    <div className="bg-[#D1A054] min-h-svh font-Cinzel p-5">
+    <div
+      style={{
+        backgroundImage: `linear-gradient(62deg, #eb955e 0%, #F7CE68 100%)`,
+        // backgroundPosition: `0 0, 0 10px, 10px -10px, -10px 0px`,
+      }}
+      className=" min-h-svh font-Cinzel p-5"
+    >
       <Toolbar>
         <Typography
           color="inherit"
@@ -57,11 +63,11 @@ const Dashboard = () => {
         >
           <span className="uppercase font-Cinzel">
             {" "}
-            <span className="  text-lg leading-[31px] md:text-2xl  font-black">
+            <span className="  text-base leading-[31px] md:text-2xl  font-black">
               AwsScholar
             </span>{" "}
             <br />
-            <span className="text-base mt-[3px] font-bold tracking-[7px] leading-[24px]">
+            <span className="text-base mt-[3px] font-bold tracking-[2px] leading-[24px]">
               find your Desire
             </span>
           </span>
@@ -226,7 +232,7 @@ const Dashboard = () => {
                 style={({ isActive }) => {
                   return isActive ? { color: "white" } : {};
                 }}
-                to="/dashboard/userhome"
+                to="/dashboard/myprofile"
               >
                 <ListItemButton
                   sx={{
@@ -383,7 +389,13 @@ const Dashboard = () => {
   );
 
   return (
-    <Box sx={{ display: "flex", bgcolor: "#F6F6F6", padding: "20px" }}>
+    <Box
+      sx={{
+        display: "flex",
+
+        padding: "20px",
+      }}
+    >
       <Toolbar
         sx={{ position: "absolute", top: "10px", left: "10px", zIndex: "1000" }}
       >

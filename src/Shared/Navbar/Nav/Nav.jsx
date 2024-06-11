@@ -76,7 +76,7 @@ const Nav = () => {
               return isActive ? { color: "#FF7F46" } : {};
             }}
             //todo: need to add userHome in route to navigate into userhome
-            to="/dashboard"
+            to="/dashboard/myprofile"
             className={`  flex items-center px-4 rounded-none  pt-4 uppercase text-base  font-Inter`}
           >
             Dashboard
