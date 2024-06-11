@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import ReactStars from "react-rating-stars-component";
 import useAvgRating from "../../../../Hooks/useAvgRating";
+import { Skeleton, Stack } from "@mui/material";
 
 const MainCard = ({ item }) => {
   // const [postedDateString, setPostedDateString] = useState(null);
@@ -27,7 +28,19 @@ const MainCard = ({ item }) => {
   const [avgRating, avgRatingLoading] = useAvgRating(item._id);
   console.log(avgRating.averageRating);
   if (avgRatingLoading) {
-    return <div className="loading loading-spinner"></div>;
+    return (
+      <Stack spacing={1}>
+        {/* For variant="text", adjust the height via font-size */}
+
+        {/* For other variants, adjust the size with `width` and `height` */}
+        <Skeleton variant="rectangular" width={457} height={400} />
+        <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+        <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+        <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+        <Skeleton variant="text" sx={{ fontSize: "1rem" }} />
+        <Skeleton variant="rounded" width={430} height={60} />
+      </Stack>
+    );
   }
 
   return (

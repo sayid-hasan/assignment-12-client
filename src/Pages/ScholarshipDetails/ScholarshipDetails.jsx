@@ -24,9 +24,14 @@ const ScholarshipDetails = () => {
   const { id } = useParams();
   console.log(id);
 
+  const [avgRating, avgRatingLoading] = useAvgRating(id);
+  console.log(avgRating.averageRating);
   const axiosSecure = useAxiosSecure();
+
+  // get Avg rating
+
   const { data: scholarship = {} } = useQuery({
-    queryKey: ["schoalrship"],
+    queryKey: ["schoalrship", avgRating?.averageRating],
     queryFn: async () => {
       const res = await axiosSecure.get(`/scholarships/${id}`);
       return res?.data;
@@ -78,12 +83,10 @@ const ScholarshipDetails = () => {
     },
   });
   console.log(scholarshipReview);
-  // get Avg rating
-  const [avgRating, avgRatingLoading] = useAvgRating(_id);
-  console.log(avgRating.averageRating);
   if (avgRatingLoading) {
     return <div className="loading loading-spinner"></div>;
   }
+
   return (
     <>
       {" "}
