@@ -13,6 +13,8 @@ const ApplyFormModal = ({
   scholarshipCategory,
   subjectCategory,
   setModal,
+  applicationFees,
+  serviceCharge,
 }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -73,11 +75,14 @@ const ApplyFormModal = ({
     const appliedScholarshipData = {
       applicantPhone,
       imageUrl,
+      applicationStatus: "pending",
       applicantAddress,
       applicantGender,
       applicantAspiredDegree,
       applicantSscResult,
       applicantHscResult,
+      applicationFees,
+      serviceCharge,
       applicantStudyGap,
       universityName,
       scholarshipCategory,
@@ -110,16 +115,16 @@ const ApplyFormModal = ({
   return (
     <>
       {modal && (
-        <div>
+        <div className="flex justify-end w-full">
           {/* // <!-- Modal toggle --> */}
 
           {/* // <!-- Main modal --> */}
           <div
             id="crud-modal"
             tabIndex="-1"
-            className=" overflow-y-auto overflow-x-hidden fixed top-0 flex   z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+            className=" overflow-y-auto overflow-x-hidden fixed top-0 right-0 flex   z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
           >
-            <div className="relative p-2 w-full max-w-5xl max-h-full">
+            <div className="relative p-2 w-full max-w-full max-h-full">
               {/* <!-- Modal content --> */}
               <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
                 {/* <!-- Modal header --> */}
@@ -152,7 +157,10 @@ const ApplyFormModal = ({
                   </button>
                 </div>
                 {/* <!-- Modal body --> */}
-                <form onSubmit={handleSubmit(onSubmit)} className=" w-full ">
+                <form
+                  onSubmit={handleSubmit(onSubmit)}
+                  className="flex items-center flex-col w-full "
+                >
                   <div className="grid gap-4 mb-4 grid-cols-2">
                     {/* phone */}
                     <div className="col-span-2 sm:col-span-1">

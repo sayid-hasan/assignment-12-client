@@ -11,11 +11,11 @@ const Field = ({
 }) => {
   return (
     <div className=" w-full">
-      <label htmlFor={id} className="FormRowLabel">
+      <label htmlFor={id} className="label FormRowLabel">
         {label}
       </label>
       <input
-        className="FormRowInput w-full input"
+        className="FormRowInput  w-full input"
         id={id}
         type={type}
         placeholder={placeholder}

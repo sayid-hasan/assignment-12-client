@@ -86,12 +86,12 @@ const Checkout = ({ scholarshipId }) => {
   });
   const {
     applicationFees,
-
+    serviceCharge,
     universityName,
     scholarshipCategory,
     subjectCategory,
   } = scholarship;
-  console.log(applicationFees);
+  console.log(applicationFees, serviceCharge);
   const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
@@ -235,66 +235,70 @@ const Checkout = ({ scholarshipId }) => {
         scholarshipCategory={scholarshipCategory}
         subjectCategory={subjectCategory}
         setModal={setModal}
+        applicationFees={applicationFees}
+        serviceCharge={serviceCharge}
       ></ApplyFormModal>
     ) : (
-      <form
-        className=" form flex flex-col justify-center  max-w-2xl mx-auto my-8"
-        onSubmit={handleSubmit}
-      >
-        <fieldset className="FormGroup">
-          {/*  */}
-          <Field
-            label="Name"
-            id="name"
-            type="text"
-            placeholder="Jane Doe"
-            required
-            autoComplete="name"
-            readonly={true}
-            value={user?.displayName}
-          />
-          <Field
-            label="Email"
-            id="email"
-            type="email"
-            placeholder="janedoe@gmail.com"
-            required
-            autoComplete="email"
-            readonly={true}
-            value={user?.email}
-          />
-          <Field
-            label="Phone"
-            id="phone"
-            type="tel"
-            placeholder="(941) 555-0123"
-            required
-            autoComplete="tel"
-            value={billingDetails.phone}
-            onChange={(e) => {
-              setBillingDetails({ ...billingDetails, phone: e.target.value });
-            }}
-          />
-        </fieldset>
-        <fieldset className="FormGroup flex justify-center items-center">
-          <div className="grow">
-            <CardField
+      <div className="flex justify-center">
+        <form
+          className=" form flex flex-col justify-center  max-w-2xl mx-auto my-8"
+          onSubmit={handleSubmit}
+        >
+          <fieldset className="FormGroup">
+            {/*  */}
+            <Field
+              label="Name"
+              id="name"
+              type="text"
+              placeholder="Jane Doe"
+              required
+              autoComplete="name"
+              readonly={true}
+              value={user?.displayName}
+            />
+            <Field
+              label="Email"
+              id="email"
+              type="email"
+              placeholder="janedoe@gmail.com"
+              required
+              autoComplete="email"
+              readonly={true}
+              value={user?.email}
+            />
+            <Field
+              label="Phone"
+              id="phone"
+              type="tel"
+              placeholder="(941) 555-0123"
+              required
+              autoComplete="tel"
+              value={billingDetails.phone}
               onChange={(e) => {
-                setError(e.error);
-                setCardComplete(e.complete);
+                setBillingDetails({ ...billingDetails, phone: e.target.value });
               }}
             />
-          </div>
-        </fieldset>
-        {error && <ErrorMessage>{error.message}</ErrorMessage>}
-        <SubmitButton
-          processing={processing}
-          error={error}
-          disabled={!stripe || !clientSecret}
-        >
-          Pay {applicationFees}
-        </SubmitButton>
-      </form>
+          </fieldset>
+          <fieldset className="FormGroup flex justify-center items-center">
+            <div className="grow">
+              <CardField
+                onChange={(e) => {
+                  setError(e.error);
+                  setCardComplete(e.complete);
+                }}
+              />
+            </div>
+          </fieldset>
+          {error && <ErrorMessage>{error.message}</ErrorMessage>}
+          <SubmitButton
+            processing={processing}
+            error={error}
+            disabled={!stripe || !clientSecret}
+          >
+            Pay {applicationFees}
+          </SubmitButton>
+        </form>
+      </div>
     )
   );
 };
