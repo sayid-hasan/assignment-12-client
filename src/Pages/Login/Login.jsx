@@ -85,7 +85,7 @@ const Login = () => {
                 </h2>
                 <div className="form-control w-full">
                   <label className="label">
-                    <span className="text-[#444444] label-text text-lg font-medium">
+                    <span className="text-[#444444] label-text text-lg  font-medium">
                       Email
                     </span>
                   </label>

@@ -9,15 +9,27 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
   const { logOut } = useAuth();
   // request interceptor to send headers in every api request
+  // old
+  // axiosSecure.interceptors.request.use(
+  //   function (request) {
+  //     const token = localStorage.getItem("access-token");
+  //     // Edit request config
+  //     console.log("hitting in interceptror", token);
+  //     request.headers.authorization = `Bearer ${token}`;
+  //     return request;
+  //   },
+  //   (error) => {
+  //     return Promise.reject(error);
+  //   }
+  // );
+  // new
   axiosSecure.interceptors.request.use(
-    (request) => {
+    function (config) {
       const token = localStorage.getItem("access-token");
-      // Edit request config
-      //   console.log("hitting in interceptror", token);
-      request.headers.authorization = `Bearer ${token}`;
-      return request;
+      config.headers.authorization = `Bearer ${token}`;
+      return config;
     },
-    (error) => {
+    function (error) {
       return Promise.reject(error);
     }
   );
@@ -26,7 +38,7 @@ const useAxiosSecure = () => {
     function (response) {
       return response;
     },
-    async function (error) {
+    async (error) => {
       const status = error?.response?.status;
       console.log("status error in interceptors", error);
       if (status === 401 || status === 403) {

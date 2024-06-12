@@ -53,21 +53,3 @@
   padding-bottom: 20px;
   line-height: 5px;
 }
-
-.social-container {
-  display: flex;
-  border-top: solid rgb(206, 206, 206) 1px;
-  text-align: center;
-}
-
-.followers {
-  flex: 1;
-}
-
-.likes {
-  flex: 1;
-}
-
-.photos {
-  flex: 1;
-}

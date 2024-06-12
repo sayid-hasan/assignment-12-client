@@ -58,17 +58,17 @@ const AuthProvider = ({ children }) => {
   // ONAUTH STATE CHANGE
   useEffect(() => {
     const unsubscrube = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false);
       console.log("current User ", currentUser);
+      setUser(currentUser);
       if (currentUser) {
         console.log(currentUser);
-        const userInfo = { email: currentUser.email };
+
+        const userInfo = { email: currentUser?.email };
         // sent useremail and get token in response and save it in 1 cookies 2. or localstorage or state/memory
         axiosPublic.post("/jwt", userInfo).then((res) => {
           // console.log("token", res.data.token);
           if (res.data.token) {
-            localStorage.setItem("access-token", res.data.token);
+            localStorage.setItem("access-token", res?.data?.token);
             setLoading(false);
           }
         });
