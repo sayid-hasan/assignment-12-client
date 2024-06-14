@@ -71,16 +71,16 @@ const AllScholarships = () => {
         </div>
         {/* search Field */}
         <div className=" md:flex md:justify-center text-center mb-2 px-3">
-          <label className=" mb-3  max-w-1/2">
+          <div className=" max-w-1/2">
             {" "}
             <form
               onSubmit={handleSearch}
-              className="flex justify-center rounded-full items-center py-2 gap-2 h-[60px] input input-bordered px-0 mb-3  max-w-1/2"
+              className="flex justify-between rounded-full border md:w-[500px]  items-center py-2 gap-2 h-[60px]  px-0 mb-3  max-w-1/2"
             >
               <input
                 type="text"
                 name="search"
-                className="appearance-none relative top-1 h-auto mt-3 text-xl pl-4 outline-0 border-0 shadow-none"
+                className="appearance-none pl-5 focus:bg-none  h-auto text-xl outline-0 border-0 shadow-none"
                 placeholder="Search"
               />
               <button
@@ -90,7 +90,7 @@ const AllScholarships = () => {
                 <FaSearch className="md:h-[60px] md:w-[40px] md:text-3xl"></FaSearch>
               </button>
             </form>
-          </label>
+          </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mb-7 ">
           {allScholarships.map((item) => (

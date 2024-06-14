@@ -7,9 +7,17 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { FcViewDetails } from "react-icons/fc";
 import { MdOutlineRateReview } from "react-icons/md";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import { useState } from "react";
+import MyapplicationsModal from "./MyapplicationsModal";
+import MyapplicationReviewModal from "./MyapplicationReviewModal";
 const MyApplications = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
+  // props to send in modal component
+  const [scholarshipId, setScholarshipId] = useState();
+  const [modal, setModal] = useState(false);
+  const [reviewmodal, setReviewModal] = useState(false);
   const { data: appliedApplications = [], refetch } = useQuery({
     queryKey: ["appliedApplications", user?.email],
     queryFn: async () => {
@@ -45,6 +53,26 @@ const MyApplications = () => {
           .catch((err) => console.log(err));
       }
     });
+  };
+  // update applications
+  const handleEditScholarship = async (id) => {
+    if (appliedApplications?.applicationStatus === "pending") {
+      setScholarshipId(id);
+      setModal(true);
+    } else {
+      Swal.fire({
+        position: "top-end",
+        icon: "warning",
+        title: "Application can not be edited",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    }
+  };
+  // add a review
+  const handleReview = (id) => {
+    setScholarshipId(id);
+    setReviewModal(true);
   };
   return (
     <div>
@@ -110,7 +138,7 @@ const MyApplications = () => {
               </thead>
               <tbody>
                 {appliedApplications.map((appliedApplication, idx) => (
-                  <tr key={user._id}>
+                  <tr key={appliedApplication._id}>
                     <th>{idx + 1}</th>
                     <td>
                       <div className="text-[#737373] text-base py-3 md:py-6 ">
@@ -170,16 +198,24 @@ const MyApplications = () => {
                     {/* action butoon */}
                     <th>
                       <button
-                        // onClick={() => handleDelete(user._id)}
+                        onClick={() =>
+                          handleEditScholarship(
+                            appliedApplication?.scholarshipId
+                          )
+                        }
                         className="btn btn-ghost text-3xl text-white flex justify-center items-center bg-red-700"
                       >
                         <FaEdit></FaEdit>
                       </button>
                     </th>
                     <th>
-                      <button className="btn btn-ghost text-3xl text-white flex justify-center items-center bg-red-700">
-                        <FcViewDetails></FcViewDetails>
-                      </button>
+                      <Link
+                        to={`/scholarships/${appliedApplication?.scholarshipId}`}
+                      >
+                        <button className="btn btn-ghost text-3xl text-white flex justify-center items-center bg-red-700">
+                          <FcViewDetails></FcViewDetails>
+                        </button>
+                      </Link>
                     </th>
                     <th>
                       <button
@@ -194,7 +230,9 @@ const MyApplications = () => {
                     <th>
                       <button
                         title="Add a review"
-                        // onClick={() => handleDelete(user._id)}
+                        onClick={() =>
+                          handleReview(appliedApplication?.scholarshipId)
+                        }
                         className="btn btn-ghost text-3xl text-white flex justify-center items-center bg-red-700"
                       >
                         <MdOutlineRateReview></MdOutlineRateReview>
@@ -205,6 +243,23 @@ const MyApplications = () => {
               </tbody>
             </table>
           </div>
+        </div>
+        <div>
+          {
+            <div className="flex justify-center ">
+              {" "}
+              <MyapplicationsModal
+                scholarshipId={scholarshipId}
+                modal={modal}
+                setModal={setModal}
+              ></MyapplicationsModal>
+              <MyapplicationReviewModal
+                scholarshipId={scholarshipId}
+                reviewmodal={reviewmodal}
+                setReviewModal={setReviewModal}
+              ></MyapplicationReviewModal>
+            </div>
+          }
         </div>
       </div>
     </div>
