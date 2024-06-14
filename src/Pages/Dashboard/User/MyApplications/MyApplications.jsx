@@ -75,7 +75,7 @@ const MyApplications = () => {
     setReviewModal(true);
   };
   return (
-    <div>
+    <div className="container mx-auto">
       <Helmet>Dashboard | My Applications</Helmet>
       <div>
         <SectionTitle
@@ -91,8 +91,8 @@ const MyApplications = () => {
         </div>
         {/* table */}
 
-        <div>
-          <div className="overflow-x-auto rounded-t-lg mt-3">
+        <div className="w-full">
+          <div className="overflow-scroll md:overflow-y-auto md:overflow-x-auto max-w-[350px]  md:max-w-full rounded-t-lg mt-3">
             <table className="table space-y-3 font-Inter rounded-t-lg">
               {/* head */}
               <thead className="bg-[#D1A054] h-auto  py-3 md:py-6">

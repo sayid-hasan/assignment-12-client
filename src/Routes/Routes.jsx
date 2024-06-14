@@ -11,6 +11,7 @@ import Dashboard from "../Layout/Dashboard/Dashboard";
 import AllScholarships from "../Pages/allscholarship/AllScholarsShips";
 import Myprofile from "../Pages/Dashboard/User/Myprofile/Myprofile";
 import MyApplications from "../Pages/Dashboard/User/MyApplications/MyApplications";
+import MyReviews from "../Pages/Dashboard/User/MyReviews/MyReviews";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -69,6 +70,10 @@ const router = createBrowserRouter([
       {
         path: "myapplications",
         element: <MyApplications></MyApplications>,
+      },
+      {
+        path: "myreviews",
+        element: <MyReviews></MyReviews>,
       },
     ],
   },
