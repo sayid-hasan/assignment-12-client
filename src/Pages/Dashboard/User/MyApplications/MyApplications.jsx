@@ -55,8 +55,9 @@ const MyApplications = () => {
     });
   };
   // update applications
-  const handleEditScholarship = async (id) => {
-    if (appliedApplications?.applicationStatus === "pending") {
+  const handleEditScholarship = async (id, status) => {
+    console.log(id, status);
+    if (status === "pending") {
       setScholarshipId(id);
       setModal(true);
     } else {
@@ -200,7 +201,8 @@ const MyApplications = () => {
                       <button
                         onClick={() =>
                           handleEditScholarship(
-                            appliedApplication?.scholarshipId
+                            appliedApplication?.scholarshipId,
+                            appliedApplication?.applicationStatus
                           )
                         }
                         className="btn btn-ghost text-3xl text-white flex justify-center items-center bg-red-700"

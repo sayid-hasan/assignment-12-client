@@ -8,13 +8,14 @@ import MyReviewTable from "./MyReviewTable";
 const MyReviews = () => {
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
-  const { data: myReviews = [] } = useQuery({
+  const { data: myReviews = [], refetch } = useQuery({
     queryKey: ["myReviews", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/myreviews/${user?.email}`);
       return res?.data;
     },
   });
+  refetch();
   console.log(myReviews);
   return (
     <div>
@@ -64,6 +65,7 @@ const MyReviews = () => {
                 <MyReviewTable
                   key={review._id}
                   idx={idx}
+                  refetch={refetch}
                   review={review}
                 ></MyReviewTable>
               ))}
