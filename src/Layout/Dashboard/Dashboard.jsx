@@ -28,7 +28,7 @@ const Dashboard = () => {
   const [isAdmin] = useAdmin();
   const [isModerator] = useModerator();
   // const isAdmin = true;
-  // const isModerator = false;
+  // const isModerator = true;
   // refetch();
   console.log(isAdmin, isModerator);
 
@@ -81,10 +81,10 @@ const Dashboard = () => {
       </Toolbar>
       <Divider />
       <List>
-        {user && !isModerator && isAdmin && (
+        {user && !isModerator && !isAdmin && (
           <>
             {" "}
-            {/* adminhome */}
+            {/* my profile /userhome*/}
             <ListItem>
               <NavLink
                 style={({ isActive }) => {
@@ -103,18 +103,18 @@ const Dashboard = () => {
                     <FaHome></FaHome>
                   </span>
                   <span className="font-Cinzel  text-base font-bold leading-[22px]">
-                    Admin Profile
+                    My Profile
                   </span>
                 </ListItemButton>
               </NavLink>
             </ListItem>
-            {/* Add schoalrship */}
+            {/* myapplications */}
             <ListItem>
               <NavLink
                 style={({ isActive }) => {
                   return isActive ? { color: "white" } : {};
                 }}
-                to="/dashboard/addscholarship"
+                to="/dashboard/myapplications"
               >
                 <ListItemButton
                   sx={{
@@ -124,21 +124,21 @@ const Dashboard = () => {
                   }}
                 >
                   <span className="text-2xl">
-                    <FaSchool></FaSchool>
+                    <CiCalendar></CiCalendar>
                   </span>
                   <span className="font-Cinzel  text-base font-bold leading-[22px]">
-                    add Schoalarship
+                    My Applications
                   </span>
                 </ListItemButton>
               </NavLink>
             </ListItem>
-            {/* manage Schoalarship */}
+            {/* My Reviews */}
             <ListItem>
               <NavLink
                 style={({ isActive }) => {
                   return isActive ? { color: "white" } : {};
                 }}
-                to="/dashboard/manageSchoalarships"
+                to="/dashboard/myreviews"
               >
                 <ListItemButton
                   sx={{
@@ -148,82 +148,10 @@ const Dashboard = () => {
                   }}
                 >
                   <span className="text-2xl">
-                    <FaList></FaList>
+                    <MdOutlinePayment></MdOutlinePayment>
                   </span>
                   <span className="font-Cinzel  text-base font-bold leading-[22px]">
-                    manage Schoalarship
-                  </span>
-                </ListItemButton>
-              </NavLink>
-            </ListItem>
-            {/*manageappliedApplications */}
-            <ListItem>
-              <NavLink
-                style={({ isActive }) => {
-                  return isActive ? { color: "white" } : {};
-                }}
-                to="/dashboard/manageappliedApplications"
-              >
-                <ListItemButton
-                  sx={{
-                    display: "flex",
-                    gap: "15px",
-                    textDecoration: "uppercase",
-                  }}
-                >
-                  <span className="text-2xl">
-                    <FaBook></FaBook>
-                  </span>
-                  <span className="font-Cinzel  text-base font-bold leading-[22px]">
-                    Manage Applied Applications
-                  </span>
-                </ListItemButton>
-              </NavLink>
-            </ListItem>
-            {/* Manage Users*/}
-            <ListItem>
-              <NavLink
-                style={({ isActive }) => {
-                  return isActive ? { color: "white" } : {};
-                }}
-                to="/dashboard/manageusers"
-              >
-                <ListItemButton
-                  sx={{
-                    display: "flex",
-                    gap: "15px",
-                    textDecoration: "uppercase",
-                  }}
-                >
-                  <span className="text-2xl">
-                    <FaUsers></FaUsers>
-                  </span>
-                  <span className="font-Cinzel  text-base font-bold leading-[22px]">
-                    Manage Users
-                  </span>
-                </ListItemButton>
-              </NavLink>
-            </ListItem>
-            {/* Manage Reviews*/}
-            <ListItem>
-              <NavLink
-                style={({ isActive }) => {
-                  return isActive ? { color: "white" } : {};
-                }}
-                to="/dashboard/manageReviews"
-              >
-                <ListItemButton
-                  sx={{
-                    display: "flex",
-                    gap: "15px",
-                    textDecoration: "uppercase",
-                  }}
-                >
-                  <span className="text-2xl">
-                    <FaUsers></FaUsers>
-                  </span>
-                  <span className="font-Cinzel  text-base font-bold leading-[22px]">
-                    Manage Reviews
+                    My Reviews
                   </span>
                 </ListItemButton>
               </NavLink>
@@ -263,7 +191,7 @@ const Dashboard = () => {
                 style={({ isActive }) => {
                   return isActive ? { color: "white" } : {};
                 }}
-                to="/dashboard/manageSchoalarships"
+                to="/dashboard/managescholarship"
               >
                 <ListItemButton
                   sx={{
@@ -355,10 +283,10 @@ const Dashboard = () => {
             </ListItem>
           </>
         )}
-        {user && !isModerator && !isAdmin && (
+        {user && !isModerator && isAdmin && (
           <>
             {" "}
-            {/* my profile /userhome*/}
+            {/* adminhome */}
             <ListItem>
               <NavLink
                 style={({ isActive }) => {
@@ -377,18 +305,18 @@ const Dashboard = () => {
                     <FaHome></FaHome>
                   </span>
                   <span className="font-Cinzel  text-base font-bold leading-[22px]">
-                    My Profile
+                    Admin Profile
                   </span>
                 </ListItemButton>
               </NavLink>
             </ListItem>
-            {/* myapplications */}
+            {/* Add schoalrship */}
             <ListItem>
               <NavLink
                 style={({ isActive }) => {
                   return isActive ? { color: "white" } : {};
                 }}
-                to="/dashboard/myapplications"
+                to="/dashboard/addscholarship"
               >
                 <ListItemButton
                   sx={{
@@ -398,21 +326,21 @@ const Dashboard = () => {
                   }}
                 >
                   <span className="text-2xl">
-                    <CiCalendar></CiCalendar>
+                    <FaSchool></FaSchool>
                   </span>
                   <span className="font-Cinzel  text-base font-bold leading-[22px]">
-                    My Applications
+                    add Schoalarship
                   </span>
                 </ListItemButton>
               </NavLink>
             </ListItem>
-            {/* My Reviews */}
+            {/* manage Schoalarship */}
             <ListItem>
               <NavLink
                 style={({ isActive }) => {
                   return isActive ? { color: "white" } : {};
                 }}
-                to="/dashboard/myreviews"
+                to="/dashboard/managescholarship"
               >
                 <ListItemButton
                   sx={{
@@ -422,10 +350,82 @@ const Dashboard = () => {
                   }}
                 >
                   <span className="text-2xl">
-                    <MdOutlinePayment></MdOutlinePayment>
+                    <FaList></FaList>
                   </span>
                   <span className="font-Cinzel  text-base font-bold leading-[22px]">
-                    My Reviews
+                    manage Schoalarship
+                  </span>
+                </ListItemButton>
+              </NavLink>
+            </ListItem>
+            {/*manageappliedApplications */}
+            <ListItem>
+              <NavLink
+                style={({ isActive }) => {
+                  return isActive ? { color: "white" } : {};
+                }}
+                to="/dashboard/manageappliedApplications"
+              >
+                <ListItemButton
+                  sx={{
+                    display: "flex",
+                    gap: "15px",
+                    textDecoration: "uppercase",
+                  }}
+                >
+                  <span className="text-2xl">
+                    <FaBook></FaBook>
+                  </span>
+                  <span className="font-Cinzel  text-base font-bold leading-[22px]">
+                    Manage Applied Applications
+                  </span>
+                </ListItemButton>
+              </NavLink>
+            </ListItem>
+            {/* Manage Users*/}
+            <ListItem>
+              <NavLink
+                style={({ isActive }) => {
+                  return isActive ? { color: "white" } : {};
+                }}
+                to="/dashboard/manageusers"
+              >
+                <ListItemButton
+                  sx={{
+                    display: "flex",
+                    gap: "15px",
+                    textDecoration: "uppercase",
+                  }}
+                >
+                  <span className="text-2xl">
+                    <FaUsers></FaUsers>
+                  </span>
+                  <span className="font-Cinzel  text-base font-bold leading-[22px]">
+                    Manage Users
+                  </span>
+                </ListItemButton>
+              </NavLink>
+            </ListItem>
+            {/* Manage Reviews*/}
+            <ListItem>
+              <NavLink
+                style={({ isActive }) => {
+                  return isActive ? { color: "white" } : {};
+                }}
+                to="/dashboard/manageReviews"
+              >
+                <ListItemButton
+                  sx={{
+                    display: "flex",
+                    gap: "15px",
+                    textDecoration: "uppercase",
+                  }}
+                >
+                  <span className="text-2xl">
+                    <FaUsers></FaUsers>
+                  </span>
+                  <span className="font-Cinzel  text-base font-bold leading-[22px]">
+                    Manage Reviews
                   </span>
                 </ListItemButton>
               </NavLink>

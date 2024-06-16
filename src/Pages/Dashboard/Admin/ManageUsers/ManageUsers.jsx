@@ -14,10 +14,10 @@ const ManageUsers = () => {
   // filter
 
   const { data: users = [], refetch } = useQuery({
-    queryKey: ["users", filterRole],
+    queryKey: ["manageUsers", filterRole],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users?role=${filterRole}`);
-      return res.data;
+      return res?.data;
     },
   });
   // handle role
@@ -119,7 +119,7 @@ const ManageUsers = () => {
         {/* table */}
 
         <div>
-          <div className="overflow-x-auto rounded-t-lg mt-3">
+          <div className="overflow-scroll md:overflow-y-auto md:overflow-x-auto max-w-[350px]  md:max-w-full rounded-t-lg mt-3">
             <table className="table space-y-3 font-Inter rounded-t-lg">
               {/* head */}
               <thead className="bg-[#D1A054] h-auto  py-3 md:py-6">

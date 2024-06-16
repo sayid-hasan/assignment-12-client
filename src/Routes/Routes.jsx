@@ -14,6 +14,8 @@ import MyApplications from "../Pages/Dashboard/User/MyApplications/MyApplication
 import MyReviews from "../Pages/Dashboard/User/MyReviews/MyReviews";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers/ManageUsers";
 import AdminRoute from "./AdminRoute";
+import ManagaeScholarship from "../Pages/Dashboard/Moderator/shared/ManagaeScholarship/ManagaeScholarship";
+import ModeratorRoute from "./ModeratorRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -84,6 +86,15 @@ const router = createBrowserRouter([
           <AdminRoute>
             <ManageUsers></ManageUsers>
           </AdminRoute>
+        ),
+      },
+      // moderator apis
+      {
+        path: "managescholarship",
+        element: (
+          <ModeratorRoute>
+            <ManagaeScholarship></ManagaeScholarship>
+          </ModeratorRoute>
         ),
       },
     ],
