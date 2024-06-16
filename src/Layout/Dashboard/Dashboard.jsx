@@ -16,6 +16,7 @@ import { MdContactMail, MdOutlinePayment, MdShoppingBag } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../Hooks/useAdmin";
 import useAuth from "../../Hooks/useAuth";
+import useModerator from "../../Hooks/useModerator";
 
 const drawerWidth = 270;
 const Dashboard = () => {
@@ -25,10 +26,11 @@ const Dashboard = () => {
   // TDO : get admin value from database
   const { user } = useAuth();
   const [isAdmin] = useAdmin();
+  const [isModerator] = useModerator();
   // const isAdmin = true;
-  const isModerator = false;
+  // const isModerator = false;
   // refetch();
-  console.log(isAdmin);
+  console.log(isAdmin, isModerator);
 
   const handleDrawerClose = () => {
     setIsClosing(true);
@@ -222,6 +224,131 @@ const Dashboard = () => {
                   </span>
                   <span className="font-Cinzel  text-base font-bold leading-[22px]">
                     Manage Reviews
+                  </span>
+                </ListItemButton>
+              </NavLink>
+            </ListItem>
+          </>
+        )}
+        {user && isModerator && !isAdmin && (
+          <>
+            {" "}
+            {/* moderatorhome */}
+            <ListItem>
+              <NavLink
+                style={({ isActive }) => {
+                  return isActive ? { color: "white" } : {};
+                }}
+                to="/dashboard/myprofile"
+              >
+                <ListItemButton
+                  sx={{
+                    display: "flex",
+                    gap: "15px",
+                    textDecoration: "uppercase",
+                  }}
+                >
+                  <span className="text-2xl">
+                    <FaHome></FaHome>
+                  </span>
+                  <span className="font-Cinzel  text-base font-bold leading-[22px]">
+                    Moderator Profile
+                  </span>
+                </ListItemButton>
+              </NavLink>
+            </ListItem>
+            {/* manage Schoalarship */}
+            <ListItem>
+              <NavLink
+                style={({ isActive }) => {
+                  return isActive ? { color: "white" } : {};
+                }}
+                to="/dashboard/manageSchoalarships"
+              >
+                <ListItemButton
+                  sx={{
+                    display: "flex",
+                    gap: "15px",
+                    textDecoration: "uppercase",
+                  }}
+                >
+                  <span className="text-2xl">
+                    <FaList></FaList>
+                  </span>
+                  <span className="font-Cinzel  text-base font-bold leading-[22px]">
+                    manage Schoalarship
+                  </span>
+                </ListItemButton>
+              </NavLink>
+            </ListItem>
+            {/*allappliedApplications */}
+            <ListItem>
+              <NavLink
+                style={({ isActive }) => {
+                  return isActive ? { color: "white" } : {};
+                }}
+                to="/dashboard/manageappliedApplications"
+              >
+                <ListItemButton
+                  sx={{
+                    display: "flex",
+                    gap: "15px",
+                    textDecoration: "uppercase",
+                  }}
+                >
+                  <span className="text-2xl">
+                    <FaBook></FaBook>
+                  </span>
+                  <span className="font-Cinzel  text-base font-bold leading-[22px]">
+                    All Applied Applications
+                  </span>
+                </ListItemButton>
+              </NavLink>
+            </ListItem>
+            {/* All/manage Reviews*/}
+            <ListItem>
+              <NavLink
+                style={({ isActive }) => {
+                  return isActive ? { color: "white" } : {};
+                }}
+                to="/dashboard/manageReviews"
+              >
+                <ListItemButton
+                  sx={{
+                    display: "flex",
+                    gap: "15px",
+                    textDecoration: "uppercase",
+                  }}
+                >
+                  <span className="text-2xl">
+                    <FaUsers></FaUsers>
+                  </span>
+                  <span className="font-Cinzel  text-base font-bold leading-[22px]">
+                    All Reviews
+                  </span>
+                </ListItemButton>
+              </NavLink>
+            </ListItem>
+            {/* Add schoalrship */}
+            <ListItem>
+              <NavLink
+                style={({ isActive }) => {
+                  return isActive ? { color: "white" } : {};
+                }}
+                to="/dashboard/addscholarship"
+              >
+                <ListItemButton
+                  sx={{
+                    display: "flex",
+                    gap: "15px",
+                    textDecoration: "uppercase",
+                  }}
+                >
+                  <span className="text-2xl">
+                    <FaSchool></FaSchool>
+                  </span>
+                  <span className="font-Cinzel  text-base font-bold leading-[22px]">
+                    add Schoalarship
                   </span>
                 </ListItemButton>
               </NavLink>

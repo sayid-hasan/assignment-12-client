@@ -13,6 +13,7 @@ import Myprofile from "../Pages/Dashboard/User/Myprofile/Myprofile";
 import MyApplications from "../Pages/Dashboard/User/MyApplications/MyApplications";
 import MyReviews from "../Pages/Dashboard/User/MyReviews/MyReviews";
 import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers/ManageUsers";
+import AdminRoute from "./AdminRoute";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -79,7 +80,11 @@ const router = createBrowserRouter([
       // admin Api
       {
         path: "manageusers",
-        element: <ManageUsers></ManageUsers>,
+        element: (
+          <AdminRoute>
+            <ManageUsers></ManageUsers>
+          </AdminRoute>
+        ),
       },
     ],
   },
