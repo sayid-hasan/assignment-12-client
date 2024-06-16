@@ -39,6 +39,7 @@ const MyReviewTable = ({ review, idx, refetch }) => {
       const res = await axiosSecure.patch(`/reviews/${review._id}`, reviewData);
       console.log(res.data);
       if (res.data.modifiedCount > 0) {
+        reset();
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -139,7 +140,7 @@ const MyReviewTable = ({ review, idx, refetch }) => {
           </th>
         </tr>
       </tbody>
-      <div>
+      <>
         {modal && (
           <div className="flex justify-center w-full">
             {/* // <!-- Modal toggle --> */}
@@ -237,7 +238,7 @@ const MyReviewTable = ({ review, idx, refetch }) => {
             </div>
           </div>
         )}
-      </div>
+      </>
     </>
   );
 };

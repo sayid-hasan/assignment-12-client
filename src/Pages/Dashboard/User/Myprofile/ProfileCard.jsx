@@ -1,5 +1,16 @@
+import { useQuery } from "@tanstack/react-query";
 import "./profilecard.css";
+import useAxiosSecure from "../../../../Hooks/useAxiosSecure";
 const ProfileCard = ({ user }) => {
+  const axiosSecure = useAxiosSecure();
+  // get user role
+  const { data: loggeduser = {} } = useQuery({
+    queryKey: ["user"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users/${user.email}`);
+      return res.data;
+    },
+  });
   return (
     <div>
       <div className="card-container mx-auto">
@@ -9,6 +20,9 @@ const ProfileCard = ({ user }) => {
         <div className="py-5 space-x-3">
           <h1 className="bold-text">{user.displayName}</h1>
           <h2 className="normal-text">{user.email}</h2>
+          <h2 className="bold-text">
+            {loggeduser?.role ? loggeduser?.role : "user"}
+          </h2>
         </div>
         {/* <div className="social-container">
           <div className="followers">

@@ -15,6 +15,7 @@ import { FaBook, FaHome, FaList, FaSchool, FaUsers } from "react-icons/fa";
 import { MdContactMail, MdOutlinePayment, MdShoppingBag } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../Hooks/useAdmin";
+import useAuth from "../../Hooks/useAuth";
 
 const drawerWidth = 270;
 const Dashboard = () => {
@@ -22,7 +23,10 @@ const Dashboard = () => {
   const [isClosing, setIsClosing] = useState(false);
 
   // TDO : get admin value from database
+  const { user } = useAuth();
   const [isAdmin] = useAdmin();
+  // const isAdmin = true;
+  const isModerator = false;
   // refetch();
   console.log(isAdmin);
 
@@ -75,7 +79,7 @@ const Dashboard = () => {
       </Toolbar>
       <Divider />
       <List>
-        {isAdmin ? (
+        {user && !isModerator && isAdmin && (
           <>
             {" "}
             {/* adminhome */}
@@ -84,7 +88,7 @@ const Dashboard = () => {
                 style={({ isActive }) => {
                   return isActive ? { color: "white" } : {};
                 }}
-                to="/dashboard/adminprofile"
+                to="/dashboard/myprofile"
               >
                 <ListItemButton
                   sx={{
@@ -223,7 +227,8 @@ const Dashboard = () => {
               </NavLink>
             </ListItem>
           </>
-        ) : (
+        )}
+        {user && !isModerator && !isAdmin && (
           <>
             {" "}
             {/* my profile /userhome*/}

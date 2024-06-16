@@ -12,6 +12,7 @@ import AllScholarships from "../Pages/allscholarship/AllScholarsShips";
 import Myprofile from "../Pages/Dashboard/User/Myprofile/Myprofile";
 import MyApplications from "../Pages/Dashboard/User/MyApplications/MyApplications";
 import MyReviews from "../Pages/Dashboard/User/MyReviews/MyReviews";
+import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers/ManageUsers";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -74,6 +75,11 @@ const router = createBrowserRouter([
       {
         path: "myreviews",
         element: <MyReviews></MyReviews>,
+      },
+      // admin Api
+      {
+        path: "manageusers",
+        element: <ManageUsers></ManageUsers>,
       },
     ],
   },

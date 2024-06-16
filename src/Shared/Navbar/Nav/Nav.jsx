@@ -72,9 +72,9 @@ const Nav = () => {
       <li className="flex">
         {user && isAdmin && (
           <Link
-            style={({ isActive }) => {
-              return isActive ? { color: "#FF7F46" } : {};
-            }}
+            // style={({ isActive }) => {
+            //   return isActive ? { color: "#FF7F46" } : { color: "white" };
+            // }}
             //todo: need to add userHome in route to navigate into userhome
             to="/dashboard/myprofile"
             className={`  flex items-center px-4 rounded-none  pt-4 uppercase text-base  font-Inter`}
@@ -84,7 +84,7 @@ const Nav = () => {
         )}
         {user && !isAdmin && (
           <Link
-            to="/dashboard"
+            to="/dashboard/myprofile"
             className={`  flex items-center px-4 rounded-none  pt-4 uppercase text-base  font-Inter`}
           >
             Dashboard
