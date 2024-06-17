@@ -17,6 +17,7 @@ import { Navigation } from "swiper/modules";
 import ReactStars from "react-rating-stars-component";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import useAvgRating from "../../Hooks/useAvgRating";
+import moment from "moment";
 
 // stars
 
@@ -29,6 +30,7 @@ const ScholarshipDetails = () => {
   const axiosSecure = useAxiosSecure();
 
   // get Avg rating
+  // get single scholarship data
 
   const { data: scholarship = {} } = useQuery({
     queryKey: ["schoalrship", avgRating?.averageRating],
@@ -40,19 +42,6 @@ const ScholarshipDetails = () => {
 
   // stars
 
-  // date local string
-  const getDate = (review) => {
-    const options = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
-
-    const date = new Date(review.reviewDate);
-    const result = date.toLocaleDateString("en-GB", options);
-    return result;
-  };
   const {
     // scholarshipName,
     universityName,
@@ -174,7 +163,7 @@ const ScholarshipDetails = () => {
                     Posted on :{" "}
                   </span>
                   <div className="md:text-xl text-base font-bold flex items-start gap-2">
-                    {postDate}
+                    {moment(postDate).format("LL")}
                   </div>
                 </div>
                 <div>
@@ -279,7 +268,7 @@ const ScholarshipDetails = () => {
 
                       <p className="text-xl max-w-[800px] text-center">
                         {/* review.reviewDate.toLocaleDateString("de-DE", options) */}
-                        {getDate(review)}
+                        {moment(review.reviewDate).format("LL")}
                       </p>
                       <p className="text-xl font-Cinzel max-w-[800px] text-center">
                         {review?.reviewComment}

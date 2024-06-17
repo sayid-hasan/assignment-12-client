@@ -1,18 +1,19 @@
-import { FaEdit, FaTrashAlt } from "react-icons/fa";
-import { FcViewDetails } from "react-icons/fc";
-import { Link } from "react-router-dom";
 import SectionTitle from "../../../../../Components/SectionTitle/SectionTitle";
 import { Helmet } from "react-helmet-async";
 import { useQuery } from "@tanstack/react-query";
-// import useAxiosPublic from "../../../../../Hooks/useAxiosPublic";
-import useAxiosSecure from "../../../../../Hooks/useAxiosSecure";
+
 import useAxiosPublic from "../../../../../Hooks/useAxiosPublic";
+import Scholarship from "./Scholarship";
 
 const ManagaeScholarship = () => {
   // get all schoalrship
   const axiosPublic = useAxiosPublic();
 
-  const { data: allScholarships = [], isLoading } = useQuery({
+  const {
+    data: allScholarships = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["allscholarships"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/allsholarship`);
@@ -63,12 +64,7 @@ const ManagaeScholarship = () => {
                   <th className="text-base uppercase font-semibold leading-[19px]">
                     Applications Fee
                   </th>
-                  <th className="text-base uppercase font-semibold leading-[19px]">
-                    Service Charge
-                  </th>
-                  <th className="text-base uppercase font-semibold leading-[19px]">
-                    Status
-                  </th>
+
                   <th className="text-base uppercase font-semibold leading-[19px]">
                     Action
                   </th>
@@ -77,90 +73,17 @@ const ManagaeScholarship = () => {
                   </th>
                   <th className="text-base uppercase font-semibold leading-[19px]">
                     Action
-                  </th>
-                  <th className="text-base uppercase font-semibold leading-[19px]">
-                    Add Review
                   </th>
                 </tr>
               </thead>
               <tbody>
-                {allScholarships.map((appliedApplication, idx) => (
-                  <tr key={appliedApplication._id}>
-                    <th>{idx + 1}</th>
-                    <td>
-                      <div className="text-[#737373] text-base py-3 md:py-6 ">
-                        <span>{appliedApplication?.universityName}</span>
-                      </div>
-                    </td>
-                    <td className="text-[#737373] text-base py-3 md:py-6 ">
-                      <span>{appliedApplication?.applicantAddress}</span>
-                    </td>
-                    <td>
-                      <div className="text-[#737373] text-base py-3 md:py-6 ">
-                        <span>{appliedApplication?.feedback}</span>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="text-[#737373] text-base py-3 md:py-6 ">
-                        <span>{appliedApplication?.subjectCategory}</span>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="text-[#737373] text-base py-3 md:py-6 ">
-                        <span>
-                          {appliedApplication?.applicantAspiredDegree}
-                        </span>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="text-[#737373] text-base py-3 md:py-6 ">
-                        <span>{appliedApplication?.applicationFees}</span>
-                      </div>
-                    </td>
-                    <td>
-                      <div className="text-[#737373] text-base py-3 md:py-6 ">
-                        <span>{appliedApplication?.serviceCharge}</span>
-                      </div>
-                    </td>
-                    <td>
-                      <div className=" text-sm font-bold text-yellow-600 py-3 md:py-6 ">
-                        <span>{appliedApplication?.applicationStatus}</span>
-                      </div>
-                    </td>
-
-                    {/* action butoon */}
-                    <th>
-                      <button
-                        // onClick={() =>
-                        //   handleEditScholarship(
-                        //     appliedApplication?.scholarshipId,
-                        //     appliedApplication?.applicationStatus
-                        //   )
-                        // }
-                        className="btn btn-ghost text-3xl text-white flex justify-center items-center bg-red-700"
-                      >
-                        <FaEdit></FaEdit>
-                      </button>
-                    </th>
-                    <th>
-                      <Link
-                      // to={`/scholarships/${appliedApplication?.scholarshipId}`}
-                      >
-                        <button className="btn btn-ghost text-3xl text-white flex justify-center items-center bg-red-700">
-                          <FcViewDetails></FcViewDetails>
-                        </button>
-                      </Link>
-                    </th>
-                    <th>
-                      <button
-                        title="cancel"
-                        // onClick={() => handleDelete(appliedApplication._id)}
-                        className="btn btn-ghost text-3xl text-white flex justify-center items-center bg-red-700"
-                      >
-                        <FaTrashAlt></FaTrashAlt>
-                      </button>
-                    </th>
-                  </tr>
+                {allScholarships.map((scholarship, idx) => (
+                  <Scholarship
+                    key={scholarship._id}
+                    scholarship={scholarship}
+                    idx={idx}
+                    refetch={refetch}
+                  ></Scholarship>
                 ))}
               </tbody>
             </table>
