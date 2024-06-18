@@ -1,27 +1,23 @@
 import { useForm } from "react-hook-form";
-import useAxiosSecure from "../../../../../Hooks/useAxiosSecure";
-import { useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 
-import Swal from "sweetalert2";
+import { useState } from "react";
+
 import { IKContext, IKUpload } from "imagekitio-react";
 import moment from "moment";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+import useAxiosSecure from "../../../../../Hooks/useAxiosSecure";
+import SectionTitle from "../../../../../Components/SectionTitle/SectionTitle";
+import Swal from "sweetalert2";
+import useAuth from "../../../../../Hooks/useAuth";
 
-const UpdateScholarshipModal = ({
-  modal,
-  scholarshipId,
-  refetch,
-  setModal,
-}) => {
-  console.log(scholarshipId);
-
+const AddScholarship = () => {
   const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
 
   // react form hook
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, reset } = useForm();
   const [imageUrl, setImageUrl] = useState(null);
   // get authentication params for image uplaod in imagekit from server
   const authenticator = async () => {
@@ -54,43 +50,13 @@ const UpdateScholarshipModal = ({
     setImageUrl(res?.url);
   };
 
-  // get data for display
-  const { data: scholarship = {} } = useQuery({
-    queryKey: ["schoalrship", scholarshipId],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/scholarships/${scholarshipId}`);
-      return res?.data;
-    },
-  });
-
-  //   console.log(scholarship);
-  const {
-    scholarshipName,
-    universityName,
-    // universityImage,
-    universityCountry,
-    universityCity,
-    universityWorldRank,
-    subjectCategory,
-    scholarshipCategory,
-    degree,
-    tuitionFees,
-    applicationFees,
-    serviceCharge,
-    applicationDeadline,
-
-    ScholarshipDetailsField,
-    _id,
-    stipend,
-  } = scholarship;
-  const [deadline, setDeadline] = useState(moment(applicationDeadline));
+  const [deadline, setDeadline] = useState(moment(""));
   //   console.log(deadline._i);
   //   getdata from onsubmit\
   const onSubmit = async (data) => {
     const {
       scholarshipName,
       universityName,
-
       universityCountry,
       universityCity,
       universityWorldRank,
@@ -100,17 +66,18 @@ const UpdateScholarshipModal = ({
       tuitionFees,
       applicationFees,
       serviceCharge,
-
       ScholarshipDetailsField,
-
       stipend,
     } = data;
     // console.log(data);
     console.log(imageUrl);
-    const updatedData = {
+
+    //   insert data on database as schoalrship
+    const scholarshipData = {
       scholarshipName,
       universityName,
-      imageUrl,
+
+      universityImage: imageUrl,
       universityCountry,
       universityCity,
       universityWorldRank,
@@ -120,28 +87,27 @@ const UpdateScholarshipModal = ({
       tuitionFees,
       applicationFees,
       serviceCharge,
-      applicationDeadline: deadline,
 
+      applicationDeadline: deadline,
+      postDate: moment(new Date()).format("L"),
+      postedUserEmail: user?.email,
       ScholarshipDetailsField,
 
       stipend,
     };
-    console.log(updatedData);
-    //   update data on database as schoalrship
+    console.log(scholarshipData);
     try {
-      const res = await axiosSecure.patch(`/scholarships/${_id}`, updatedData);
+      const res = await axiosSecure.post(`/scholarships`, scholarshipData);
       console.log(res.data);
-      if (res.data.modifiedCount > 0) {
+      if (res.data.insertedId) {
         Swal.fire({
           position: "top-end",
           icon: "success",
-          title: "Your application has been updated",
+          title: "Your Scholarship has been added",
           showConfirmButton: false,
           timer: 1500,
         });
-
-        refetch();
-        setModal(false);
+        reset();
       }
     } catch (err) {
       console.log(err);
@@ -156,48 +122,26 @@ const UpdateScholarshipModal = ({
   };
   return (
     <>
-      {modal && (
-        <div className="flex justify-center w-full">
+      {
+        <div className="w-full mx-auto">
           {/* // <!-- Modal toggle --> */}
 
           {/* // <!-- Main modal --> */}
           <div
-            id="crud-modal"
+            id=""
             tabIndex="-1"
-            className=" overflow-y-auto overflow-x-hidden fixed top-0 right-0 flex   z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+            className="    flex   z-50 justify-center items-center w-full  max-h-full"
           >
-            <div className="relative p-2 w-full max-w-full max-h-full">
-              {/* <!-- Modal content --> */}
-              <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
+            <div className=" p-2 w-full max-w-full max-h-full">
+              {/* <!-- AddScholarship content --> */}
+              <div className=" bg-white rounded-lg shadow dark:bg-gray-700">
                 {/* <!-- Modal header --> */}
-                <div className="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
-                  <h3 className="text-lg font-semibold text-gray-900 text-center w-full dark:text-white">
-                    Update Scholarship
-                  </h3>
+                <div className=" p-4 md:p-5  rounded-t dark:border-gray-600">
+                  <SectionTitle
+                    heading={"Add Scholarship"}
+                    subheading={"<<< create an opportunity >>>"}
+                  ></SectionTitle>
                   {/* close button to do set setmodal false */}
-                  <button
-                    onClick={() => setModal(false)}
-                    type="button"
-                    className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                    data-modal-toggle="crud-modal"
-                  >
-                    <svg
-                      className="w-3 h-3"
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 14 14"
-                    >
-                      <path
-                        stroke="currentColor"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
-                      />
-                    </svg>
-                    <span className="sr-only">Close modal</span>
-                  </button>
                 </div>
                 {/* <!-- Modal body --> */}
                 <form
@@ -217,10 +161,9 @@ const UpdateScholarshipModal = ({
                         type="text"
                         name="scholarshipName"
                         id="scholarshipName"
-                        defaultValue={scholarshipName}
                         {...register("scholarshipName")}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="Type Your mobile no"
+                        placeholder="Scholarship Name"
                       />
                     </div>
                     {/*  and photo */}
@@ -258,10 +201,9 @@ const UpdateScholarshipModal = ({
                         type="text"
                         name="universityCountry"
                         id="universityCountry"
-                        defaultValue={universityCountry}
                         {...register("universityCountry")}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="village,city,country"
+                        placeholder="country"
                         required=""
                       />
                     </div>
@@ -276,10 +218,9 @@ const UpdateScholarshipModal = ({
                         type="text"
                         name="universityCity"
                         id="universityCity"
-                        defaultValue={universityCity}
                         {...register("universityCity")}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="village,city,country"
+                        placeholder="city"
                         required=""
                       />
                     </div>
@@ -296,10 +237,9 @@ const UpdateScholarshipModal = ({
                         type="text"
                         name="universityWorldRank"
                         id="universityWorldRank"
-                        defaultValue={universityWorldRank}
                         {...register("universityWorldRank")}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="village,city,country"
+                        placeholder="rank"
                         required=""
                       />
                     </div>
@@ -314,7 +254,6 @@ const UpdateScholarshipModal = ({
                       <select
                         id="degree"
                         {...register("degree")}
-                        defaultValue={degree}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                       >
                         <option value={""}>Select Degree</option>
@@ -335,10 +274,9 @@ const UpdateScholarshipModal = ({
                         type="text"
                         name="tuitionFees"
                         id="tuitionFees"
-                        defaultValue={tuitionFees}
                         {...register("tuitionFees")}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="village,city,country"
+                        placeholder="$"
                         required=""
                       />
                     </div>
@@ -353,10 +291,9 @@ const UpdateScholarshipModal = ({
                         type="text"
                         name="applicationFees"
                         id="applicationFees"
-                        defaultValue={applicationFees}
                         {...register("applicationFees")}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="village,city,country"
+                        placeholder="$"
                         required=""
                       />
                     </div>
@@ -372,10 +309,9 @@ const UpdateScholarshipModal = ({
                         type="text"
                         name="serviceCharge"
                         id="serviceCharge"
-                        defaultValue={serviceCharge}
                         {...register("serviceCharge")}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="village,city,country"
+                        placeholder="$"
                         required=""
                       />
                     </div>
@@ -412,7 +348,6 @@ const UpdateScholarshipModal = ({
                       </label>
                       <input
                         type="text"
-                        defaultValue={universityName}
                         {...register("universityName")}
                         name="universityName"
                         id="universityName"
@@ -426,19 +361,22 @@ const UpdateScholarshipModal = ({
                         htmlFor="scholarshipCategory"
                         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                       >
-                        Schoalrship Category
+                        Scholarship Category
                       </label>
-                      <input
-                        type="text"
-                        name="scholarshipCategory"
-                        defaultValue={scholarshipCategory}
-                        {...register("scholarshipCategory")}
+                      <select
                         id="scholarshipCategory"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="village,city,country"
-                      />
+                        {...register("scholarshipCategory")}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      >
+                        <option value={""}>Select Scholarship Category</option>
+                        <option value="full-fund">Full fund</option>
+                        <option value="partial">Partial</option>
+                        <option value="self-fund">Self-fund</option>
+                      </select>
                     </div>
+
                     {/* subject categroy  */}
+
                     <div className="col-span-2 sm:col-span-1">
                       <label
                         htmlFor="subjectCategory"
@@ -446,15 +384,16 @@ const UpdateScholarshipModal = ({
                       >
                         Subject Category
                       </label>
-                      <input
-                        type="text"
-                        name="subjectCategory"
-                        defaultValue={subjectCategory}
-                        {...register("subjectCategory")}
+                      <select
                         id="subjectCategory"
-                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="village,city,country"
-                      />
+                        {...register("subjectCategory")}
+                        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                      >
+                        <option value={""}>Select Subject Category</option>
+                        <option value="agriculture">Agriculture</option>
+                        <option value="engineering">Engineering</option>
+                        <option value="doctor">Doctor</option>
+                      </select>
                     </div>
                     {/* stipend */}
 
@@ -469,10 +408,9 @@ const UpdateScholarshipModal = ({
                         type="text"
                         name="stipend"
                         id="stipend"
-                        defaultValue={stipend}
                         {...register("stipend")}
                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                        placeholder="village,city,country"
+                        placeholder="$"
                         required=""
                       />
                     </div>
@@ -488,10 +426,9 @@ const UpdateScholarshipModal = ({
                         id="ScholarshipDetailsField"
                         rows="4"
                         name="ScholarshipDetailsField"
-                        defaultValue={ScholarshipDetailsField}
                         {...register("ScholarshipDetailsField")}
                         className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Write product description here"
+                        placeholder="Write  description here"
                       ></textarea>
                     </div>
                   </div>
@@ -511,15 +448,15 @@ const UpdateScholarshipModal = ({
                         clipRule="evenodd"
                       ></path>
                     </svg>
-                    Update
+                    Add
                   </button>
                 </form>
               </div>
             </div>
           </div>
         </div>
-      )}
+      }
     </>
   );
 };
-export default UpdateScholarshipModal;
+export default AddScholarship;

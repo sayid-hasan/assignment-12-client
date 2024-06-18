@@ -16,6 +16,7 @@ import ManageUsers from "../Pages/Dashboard/Admin/ManageUsers/ManageUsers";
 import AdminRoute from "./AdminRoute";
 import ManagaeScholarship from "../Pages/Dashboard/Moderator/shared/ManagaeScholarship/ManagaeScholarship";
 import ModeratorRoute from "./ModeratorRoute";
+import AddScholarship from "../Pages/Dashboard/Moderator/shared/AddScholarship/AddScholarship";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -94,6 +95,14 @@ const router = createBrowserRouter([
         element: (
           <ModeratorRoute>
             <ManagaeScholarship></ManagaeScholarship>
+          </ModeratorRoute>
+        ),
+      },
+      {
+        path: "addscholarship",
+        element: (
+          <ModeratorRoute>
+            <AddScholarship></AddScholarship>
           </ModeratorRoute>
         ),
       },

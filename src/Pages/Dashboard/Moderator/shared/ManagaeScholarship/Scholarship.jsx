@@ -3,11 +3,42 @@ import { FaEdit, FaTrashAlt } from "react-icons/fa";
 import { FcViewDetails } from "react-icons/fc";
 import { Link } from "react-router-dom";
 import UpdateScholarshipModal from "./UpdateScholarshipModal";
+import useAxiosSecure from "../../../../../Hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const Scholarship = ({ scholarship, idx, refetch }) => {
+  const axiosSecure = useAxiosSecure();
   const [modal, setModal] = useState(false);
   const handleEditScholarship = () => {
     setModal(true);
+  };
+  //  delete scholarship
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/scholarships/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              refetch();
+              Swal.fire({
+                title: "Deleted!",
+                text: "Scholarship has been deleted.",
+                icon: "success",
+              });
+            }
+          })
+          .catch((err) => console.log(err));
+      }
+    });
   };
   return (
     <>
@@ -56,7 +87,7 @@ const Scholarship = ({ scholarship, idx, refetch }) => {
         <th>
           <button
             title="cancel"
-            // onClick={() => handleDelete(appliedApplication._id)}
+            onClick={() => handleDelete(scholarship._id)}
             className="btn btn-ghost text-3xl text-white flex justify-center items-center bg-red-700"
           >
             <FaTrashAlt></FaTrashAlt>
