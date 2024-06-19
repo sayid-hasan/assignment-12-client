@@ -73,6 +73,8 @@ Reviews
   box-shadow: var(--light-shadow);
   transition: var(--transition);
   text-align: center;
+  border: 1px solid var(--clr-primary-5);
+  border-radius: 20px;
 }
 .review:hover {
   box-shadow: var(--dark-shadow);

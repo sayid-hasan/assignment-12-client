@@ -49,7 +49,8 @@ const MyapplicationReviewModal = ({
   });
   refetch();
   //   console.log(appliedScholarship);
-  const { universityName, scholarshipName } = appliedScholarship;
+  const { universityName, scholarshipName, subjectCategory } =
+    appliedScholarship;
   // getdata from onsubmit
   const onSubmit = async (data) => {
     const { reviewComment } = data;
@@ -62,7 +63,7 @@ const MyapplicationReviewModal = ({
       reviewDate,
 
       scholarshipName,
-
+      subjectCategory,
       universityName,
       loggedInUserName: user?.displayName,
       userImage: user?.photoURL,

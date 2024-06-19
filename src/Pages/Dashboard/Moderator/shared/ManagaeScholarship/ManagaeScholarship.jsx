@@ -26,7 +26,9 @@ const ManagaeScholarship = () => {
   }
   return (
     <div className="container mx-auto">
-      <Helmet>Dashboard | Manage Scholarships</Helmet>
+      <Helmet>
+        <title>Dashboard | Manage Scholarships</title>
+      </Helmet>
       <div>
         <SectionTitle
           heading={"Scholarships"}

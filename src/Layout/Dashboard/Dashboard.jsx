@@ -239,7 +239,7 @@ const Dashboard = () => {
                 style={({ isActive }) => {
                   return isActive ? { color: "white" } : {};
                 }}
-                to="/dashboard/manageReviews"
+                to="/dashboard/allreviews"
               >
                 <ListItemButton
                   sx={{
@@ -412,7 +412,7 @@ const Dashboard = () => {
                 style={({ isActive }) => {
                   return isActive ? { color: "white" } : {};
                 }}
-                to="/dashboard/manageReviews"
+                to="/dashboard/allreviews"
               >
                 <ListItemButton
                   sx={{

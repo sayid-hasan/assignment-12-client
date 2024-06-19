@@ -12,7 +12,7 @@ const Payment = () => {
   const scholarshipId = state?.scholarshipId;
   //   console.log(scholarshipId);
   return (
-    <div className="bg-[#F6F6F6] pt-[100px]">
+    <div className=" pt-[100px]">
       <div className=" w-full">
         <SectionTitle
           heading={" Payment"}

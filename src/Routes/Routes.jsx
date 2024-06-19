@@ -17,6 +17,7 @@ import AdminRoute from "./AdminRoute";
 import ManagaeScholarship from "../Pages/Dashboard/Moderator/shared/ManagaeScholarship/ManagaeScholarship";
 import ModeratorRoute from "./ModeratorRoute";
 import AddScholarship from "../Pages/Dashboard/Moderator/shared/AddScholarship/AddScholarship";
+import AllReviews from "../Pages/Dashboard/Moderator/shared/AllReviews/AllReviews";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -103,6 +104,14 @@ const router = createBrowserRouter([
         element: (
           <ModeratorRoute>
             <AddScholarship></AddScholarship>
+          </ModeratorRoute>
+        ),
+      },
+      {
+        path: "allreviews",
+        element: (
+          <ModeratorRoute>
+            <AllReviews></AllReviews>
           </ModeratorRoute>
         ),
       },
