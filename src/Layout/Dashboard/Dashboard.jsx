@@ -215,7 +215,7 @@ const Dashboard = () => {
                 style={({ isActive }) => {
                   return isActive ? { color: "white" } : {};
                 }}
-                to="/dashboard/manageappliedApplications"
+                to="/dashboard/appliedscholarships"
               >
                 <ListItemButton
                   sx={{

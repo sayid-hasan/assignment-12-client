@@ -19,7 +19,11 @@ const AllReviews = () => {
   });
   console.log(allreviews);
   if (isLoading) {
-    return <div className="loading-spinner"></div>;
+    return (
+      <div className="flex justify-center items-center ">
+        <div className="loading-spinner text-3xl"></div>
+      </div>
+    );
   }
   return (
     <div className="container mx-auto">

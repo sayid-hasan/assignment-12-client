@@ -18,6 +18,7 @@ import ManagaeScholarship from "../Pages/Dashboard/Moderator/shared/ManagaeSchol
 import ModeratorRoute from "./ModeratorRoute";
 import AddScholarship from "../Pages/Dashboard/Moderator/shared/AddScholarship/AddScholarship";
 import AllReviews from "../Pages/Dashboard/Moderator/shared/AllReviews/AllReviews";
+import ManageAllAppliedScholarship from "../Pages/Dashboard/Moderator/shared/ManageAllAppliedScholarship/ManageAllAppliedScholarship";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -112,6 +113,14 @@ const router = createBrowserRouter([
         element: (
           <ModeratorRoute>
             <AllReviews></AllReviews>
+          </ModeratorRoute>
+        ),
+      },
+      {
+        path: "appliedscholarships",
+        element: (
+          <ModeratorRoute>
+            <ManageAllAppliedScholarship></ManageAllAppliedScholarship>
           </ModeratorRoute>
         ),
       },

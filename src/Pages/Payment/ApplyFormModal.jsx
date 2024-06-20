@@ -1,10 +1,11 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { toast } from "react-toastify";
+
 import { IKContext, IKUpload } from "imagekitio-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const ApplyFormModal = ({
   modal,
@@ -91,6 +92,7 @@ const ApplyFormModal = ({
       userName: user.displayName,
       scholarshipId,
       currentDate: new Date(),
+      feedback: "",
     };
     console.log(appliedScholarshipData);
     //   save data on database as appliedScholarships
@@ -101,15 +103,25 @@ const ApplyFormModal = ({
       );
       console.log(res.data);
       if (res.data.insertedId) {
-        toast.success("successfully applied");
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your application has been submitted",
+          showConfirmButton: false,
+          timer: 1500,
+        });
         navigate("/");
         setModal(false);
       }
     } catch (err) {
       console.log(err);
-      toast.warn(
-        ` ${applicantPhone} applicant already applied for this. try another one `
-      );
+      Swal.fire({
+        position: "top-end",
+        icon: "warning",
+        title: `  applicant already applied for this. try another one `,
+        showConfirmButton: false,
+        timer: 1500,
+      });
     }
   };
   return (
