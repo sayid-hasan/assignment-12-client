@@ -12,7 +12,7 @@ import {
 import { useState } from "react";
 import { CiCalendar, CiMenuBurger } from "react-icons/ci";
 import { FaBook, FaHome, FaList, FaSchool, FaUsers } from "react-icons/fa";
-import { MdContactMail, MdOutlinePayment, MdShoppingBag } from "react-icons/md";
+import { MdOutlinePayment } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../../Hooks/useAdmin";
 import useAuth from "../../Hooks/useAuth";
@@ -50,10 +50,12 @@ const Dashboard = () => {
   const drawer = (
     <div
       style={{
-        backgroundImage: `linear-gradient(62deg, #eb955e 0%, #F7CE68 100%)`,
+        backgroundImage: `linear-gradient(62deg, #eb955e 0%, #F7CE68 100%)
+        `,
+        height: "100%",
         // backgroundPosition: `0 0, 0 10px, 10px -10px, -10px 0px`,
       }}
-      className=" min-h-svh font-Cinzel p-5"
+      className="max-h-fit h-fit   font-Cinzel p-5"
     >
       <Toolbar>
         <Typography
@@ -316,7 +318,7 @@ const Dashboard = () => {
                 style={({ isActive }) => {
                   return isActive ? { color: "white" } : {};
                 }}
-                to="/dashboard/addscholarship"
+                to="/dashboard/addscholarships"
               >
                 <ListItemButton
                   sx={{
@@ -340,7 +342,7 @@ const Dashboard = () => {
                 style={({ isActive }) => {
                   return isActive ? { color: "white" } : {};
                 }}
-                to="/dashboard/managescholarship"
+                to="/dashboard/manageAllScholarship"
               >
                 <ListItemButton
                   sx={{
@@ -412,7 +414,7 @@ const Dashboard = () => {
                 style={({ isActive }) => {
                   return isActive ? { color: "white" } : {};
                 }}
-                to="/dashboard/allreviews"
+                to="/dashboard/manageReviews"
               >
                 <ListItemButton
                   sx={{
@@ -471,47 +473,6 @@ const Dashboard = () => {
               </span>
               <span className="font-Cinzel  text-base font-bold leading-[22px]">
                 menu
-              </span>
-            </ListItemButton>
-          </NavLink>
-        </ListItem>
-        {/* shop */}
-        <ListItem>
-          <NavLink
-            style={({ isActive }) => {
-              return isActive ? { color: "white" } : {};
-            }}
-            to="/"
-          >
-            <ListItemButton
-              sx={{ display: "flex", gap: "15px", textDecoration: "uppercase" }}
-            >
-              <span className="text-2xl">
-                <MdShoppingBag></MdShoppingBag>
-              </span>
-              <span className="font-Cinzel  text-base font-bold leading-[22px]">
-                shop
-              </span>
-            </ListItemButton>
-          </NavLink>
-        </ListItem>
-
-        {/* contact */}
-        <ListItem>
-          <NavLink
-            style={({ isActive }) => {
-              return isActive ? { color: "white" } : {};
-            }}
-            to="/dashboard/cart"
-          >
-            <ListItemButton
-              sx={{ display: "flex", gap: "15px", textDecoration: "uppercase" }}
-            >
-              <span className="text-2xl">
-                <MdContactMail></MdContactMail>
-              </span>
-              <span className="font-Cinzel  text-base font-bold leading-[22px]">
-                contact
               </span>
             </ListItemButton>
           </NavLink>

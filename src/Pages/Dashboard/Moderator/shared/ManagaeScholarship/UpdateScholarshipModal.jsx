@@ -28,7 +28,9 @@ const UpdateScholarshipModal = ({
     try {
       // You can also pass headers and validate the request source in the backend, or you can use headers for any other use case.
 
-      const response = await fetch("http://localhost:5500/get-signature");
+      const response = await fetch(
+        "https://assignment-12-server-azure-rho.vercel.app/get-signature"
+      );
 
       if (!response.ok) {
         const errorText = await response.text();

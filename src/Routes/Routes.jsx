@@ -91,7 +91,7 @@ const router = createBrowserRouter([
           </AdminRoute>
         ),
       },
-      // moderator apis
+      // moderator ROUTES
       {
         path: "managescholarship",
         element: (
@@ -122,6 +122,40 @@ const router = createBrowserRouter([
           <ModeratorRoute>
             <ManageAllAppliedScholarship></ManageAllAppliedScholarship>
           </ModeratorRoute>
+        ),
+      },
+
+      // ADMIN ROUTES
+      {
+        path: "manageAllScholarship",
+        element: (
+          <AdminRoute>
+            <ManagaeScholarship></ManagaeScholarship>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "addscholarships",
+        element: (
+          <AdminRoute>
+            <AddScholarship></AddScholarship>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manageappliedApplications",
+        element: (
+          <AdminRoute>
+            <ManageAllAppliedScholarship></ManageAllAppliedScholarship>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manageReviews",
+        element: (
+          <AdminRoute>
+            <AllReviews></AllReviews>
+          </AdminRoute>
         ),
       },
     ],
