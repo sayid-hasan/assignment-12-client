@@ -1,8 +1,16 @@
-# React + Vite
+## WEBSITE NAME : ***AWSSCHOLARS***
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<a href="https://assignment-12-af8ea.web.app">**LIVE SITE**</a>
 
-Currently, two official plugins are available:
+## TOP 10 FEATURES:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**1** SECURE LOGIN AND REGISTRATION
+**2** PAYMENT WITH STRIPE
+**3** CAN ADD SCHOALRSHIP
+**4** CAN APPPLY FOR SCHOALRSHIP
+**5** CAN GIVE REVIEW
+**6** CAN PROVIDE FEEDBACK
+**7** DELETE A USER
+**8** CAN PROMOTE A USER TO MODERATOR OR ADMIN
+**9** CAN FILTER USER BASED ON THEIR ROLE
+**10** CAN SEARCH FOR DESIRED SCHOLARSHIP WITH KEYOWORD IN ALL SCHOLARSHIP SECTION
