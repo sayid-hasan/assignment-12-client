@@ -10,12 +10,12 @@ const Field = ({
   readonly,
 }) => {
   return (
-    <div className=" w-full">
+    <div className=" w-fit">
       <label htmlFor={id} className="label FormRowLabel">
         {label}
       </label>
       <input
-        className="FormRowInput  w-full input"
+        className="FormRowInput  w-fit input"
         id={id}
         type={type}
         placeholder={placeholder}

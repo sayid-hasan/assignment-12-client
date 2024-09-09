@@ -239,7 +239,7 @@ const Checkout = ({ scholarshipId }) => {
         serviceCharge={serviceCharge}
       ></ApplyFormModal>
     ) : (
-      <div className="flex justify-center">
+      <div className="flex justify-center overflow-hidden">
         <form
           className=" form flex flex-col justify-center  max-w-2xl mx-auto my-8"
           onSubmit={handleSubmit}

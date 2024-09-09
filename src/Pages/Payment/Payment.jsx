@@ -13,7 +13,7 @@ const Payment = () => {
   //   console.log(scholarshipId);
   return (
     <div className=" pt-[100px]">
-      <div className=" w-full">
+      <div className=" max-w-5xl mx-auto overflow-hidden">
         <SectionTitle
           heading={" Payment"}
           subheading={"procced to payment"}

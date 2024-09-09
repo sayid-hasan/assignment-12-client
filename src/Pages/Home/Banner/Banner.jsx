@@ -82,7 +82,7 @@ const Banner = () => {
     <>
       {/* // <!-- carousel --> */}
       <div
-        className={`carousel container mx-auto ${carouselClass}`}
+        className={`carousel relative container mx-auto ${carouselClass}`}
         ref={carouselDom}
       >
         <div className="list" ref={SliderDom}>
@@ -156,7 +156,7 @@ const Banner = () => {
             </div>
           </div>
         </div>
-        <div className="thumbnail" ref={thumbnailBorderDom}>
+        <div className="thumbnail " ref={thumbnailBorderDom}>
           <div className="item">
             <img src="https://i.imgur.com/gmrMjEO.jpg" />
             <div className="content">
