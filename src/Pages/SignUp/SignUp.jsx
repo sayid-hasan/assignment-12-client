@@ -84,7 +84,7 @@ const SignUp = () => {
       </Helmet>
       <div className="hero min-h-screen background">
         <div className="background box-shadow  flex justify-center items-center max-w-6xl md:px-10">
-          <div className="hero-content flex-col lg:flex-row-reverse">
+          <div className="hero-content p-0 flex-col lg:flex-row-reverse">
             <div className=" md:w-1/2 w-full ">
               <img src={img1} alt="" />
             </div>

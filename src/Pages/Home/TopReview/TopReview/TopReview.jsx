@@ -48,7 +48,7 @@ const TopReview = () => {
   console.log(topReviews);
 
   return (
-    <div className="max-w-7xl h-fit mx-auto py-5 ">
+    <div className="max-w-7xl h-fit mx-auto py-5 p-3">
       <div>
         <SectionTitle
           subheading={"<<< What Our Clients Say >>>"}
@@ -64,7 +64,7 @@ const TopReview = () => {
           }}
           navigation={true}
           modules={[Navigation, FreeMode]}
-          className="mySwiper  "
+          className="mySwiper p-4 "
         >
           {topReviews.map((review, idx) => (
             <SwiperSlide key={idx}>

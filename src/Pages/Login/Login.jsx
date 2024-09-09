@@ -65,17 +65,17 @@ const Login = () => {
     }
   };
   return (
-    <div>
+    <div className="">
       <Helmet>
         <title>AweScholars | Log In</title>
       </Helmet>
       <div className="hero min-h-screen ">
-        <div className="   flex justify-center items-center max-w-6xl md:px-10">
-          <div className="hero-content flex-col lg:flex-row">
-            <div className=" md:w-1/2 w-full ">
-              <img src={img1} alt="" />
+        <div className="   flex justify-center items-center max-w-6xl  md:px-10">
+          <div className="hero-content p-0 flex-col lg:flex-row">
+            <div className=" md:w-1/2 w-full overflow-hidden ">
+              <img src={img1} className="sm:w-[200px] md:w-auto" alt="" />
             </div>
-            <div className="card shrink-0 md:w-1/2 w-full max-w-sm  bg-none">
+            <div className="card p-0 shrink-0 md:w-1/2 w-full max-w-sm  bg-none">
               <form
                 onSubmit={handleSubmit(onSubmit)}
                 className="card-body gap-1 font-Inter"

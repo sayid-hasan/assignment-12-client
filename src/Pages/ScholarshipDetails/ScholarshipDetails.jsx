@@ -82,7 +82,7 @@ const ScholarshipDetails = () => {
       <Helmet>
         <title>Home |{`${universityName}`}</title>
       </Helmet>
-      <div className=" min-h-[400px] container  background">
+      <div className=" min-h-[400px] container  background p-4  ">
         {/* title
          */}
         <div className="pt-[100px]  ">
@@ -228,7 +228,7 @@ const ScholarshipDetails = () => {
           <>
             <div className=" grid grid-cols-1 font-Inter min-h- bg-opacity-45 box-border  text-white py-8">
               <Swiper
-                slidesPerView={2}
+                slidesPerView={1}
                 spaceBetween={20}
                 loop={true}
                 pagination={{

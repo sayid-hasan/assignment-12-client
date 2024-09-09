@@ -31,7 +31,7 @@ const TopScholarship = () => {
           subheading={"<<< find out about our top scholarship>>>"}
         ></SectionTitle>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mb-7 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7 mb-7 p-4 ">
         {topScholarships.map((item) => (
           <MainCard key={item._id} item={item}></MainCard>
         ))}
